@@ -10,16 +10,12 @@ $id=returnUser();
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0 text-center">
-            <?php if ($id=='admin'): ?>
-              <li class="nav-item active">
-              <a class="nav-link" href="../index.php">Home<span class="sr-only">(current)</span></a>
-            </li>
-            <?php else:?>
              <li class="nav-item active">
-              <a class="nav-link" href="./index.php">Home<span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
               </li>
-              <li class="nav-item">
-              <a class="nav-link" href="./admins_views/index.php">Admin</a>
+              <?php if ($id!='admin'): ?>
+             <li class="nav-item">
+              <a class="nav-link" href="./admin?q=admins">Admin</a>
             </li>
             <?php endif;?>
            </ul>

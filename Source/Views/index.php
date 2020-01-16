@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <?php
-      include '../bootstrap/bootstrap4_header.php';
+      require __dir__.'/'.'../resources/bootstrap/bootstrap4_header.php';
     ?>    
     <title>eLibrary</title>
   </head>
@@ -27,12 +27,12 @@
                 <h5 class="text-center">Registration Form</h5>
                 <form>
                 <div class="form-group">
-                  <label for="emailid">Email address</label>
-                  <input type="email" class="form-control" id="emailid" aria-describedby="emailHelp" placeholder="Enter email">
+                  <label for="remailid">Email address</label>
+                  <input type="email" class="form-control" id="remailid" aria-describedby="emailHelp" placeholder="Enter email">
                 </div>
                 <div class="form-group">
-                  <label for="password">Password</label>
-                  <input type="password" class="form-control" id="password" placeholder="Password">
+                  <label for="rpassword">Password</label>
+                  <input type="password" class="form-control" id="rpassword" placeholder="Password">
                 </div>
                 <div class="form-group">
                   <label for="password1">Confirm Password</label>
@@ -41,7 +41,7 @@
                 <br>
                <span class="col-sm-6"><button type="submit" class="btn btn-success" style="margin-left:-12px;">Register</button>
                 </span>
-                <span class="col-sm-6">Register using  <a href="http://www.google.com" class=" text-danger"><i class="fas fa-envelope"></i>Gmail</a></span>
+                <span class="col-sm-6">Or &nbsp;&nbsp;&nbsp;&nbsp;Register using&nbsp;&nbsp;<a href="http://www.google.com" class="text-danger"><i class="fas fa-envelope"></i><u>Gmail</u></a></span>
               </form>
             </div>
           </div>
@@ -51,7 +51,7 @@
 include __dir__.'/common/footer.php';
 ?>
       <?php
-      include '../bootstrap/bootstrap4_footer.php';
+      require __dir__.'/'.'../resources/bootstrap/bootstrap4_footer.php';
     ?>
   </body>
 </html>
