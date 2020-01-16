@@ -5,12 +5,12 @@
    switch ($request) {
     case '/' :
     case '' :
-        require __DIR__ . '/Views/index.php';
+        require __DIR__ . '/Views/homepage.php';
         break;
     case '/routes.php' :
         if(isset($_GET['q'])){
             if($_GET['q']=='admins')
-                require __DIR__ . '/Views/admins_views/index.php';
+                require __DIR__ . '/Views/admins_views/admin_home_page.php';
             elseif($_GET['q']=='xyz'){
                  echo "Error3..!";
             }
