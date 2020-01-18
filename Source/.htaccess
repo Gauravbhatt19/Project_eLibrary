@@ -1,6 +1,40 @@
 Options -Indexes
-
 RewriteEngine On
+
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule koobdom /Models/Books/editBook.php [NC,P]
+
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule koobdda /Models/Books/addBook.php [NC,P]
+
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule daer /Controllers/Readers/readBook.php [NC,P]
+
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule edit /Controllers/Admins/editBook.php [NC,P]
+
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule del /Controllers/Admins/delBook.php [NC,P]
+
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule admins /Views/admins_views/dashboard.php [NC,P]
+
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule readers /Views/readers_views/dashboard.php [NC,P]
 
 RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-d
