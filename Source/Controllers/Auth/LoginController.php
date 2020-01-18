@@ -27,19 +27,24 @@ elseif(isset($_POST['emailid'])) {
       $pass=mysqli_escape_string($conn,$_POST['password']);
       $qry="SELECT * FROM readers WHERE email='{$emailid}'";
       $result=mysqli_query($conn,$qry);
-      if(isset($result)){
+      if($result){
         $db_values=mysqli_fetch_assoc($result);
         $db_pass=$db_values['password'];
         if(password_verify($pass, $db_pass)){
+           if($db_values['verified_id']=='1'){
            $type='reader';
            $uid=$db_values['id'];
            require __dir__.'/'.'../setUserSession.php';
            header("location:/readers");
+         }
+           else {
+              header("location: /verifymsg");
+           }
            }
         else{
            echo "<script type='text/javascript'>   window.setTimeout(function() { alert( 'Invalid Login ID or Password ! Try Again..!' ); window.location='/';},0);</script>";
             }
        }
     }
-} 
+  }
 ?>

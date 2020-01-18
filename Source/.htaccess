@@ -4,7 +4,13 @@ RewriteEngine On
 RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule verifymsg /Views/readers_views/verify.php [NC,P]
+
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule koobdom /Models/Books/editBook.php [NC,P]
+
 
 RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-d
@@ -15,6 +21,12 @@ RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule daer /Controllers/Readers/readBook.php [NC,P]
+
+
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule nu /Controllers/Readers/unReadBook.php [NC,P]
 
 RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-d

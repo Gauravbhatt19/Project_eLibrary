@@ -27,7 +27,7 @@
           ?>      
           <button type="button" class="btn btn-light" data-toggle="modal" data-target="#addBookModal">Add Book</button>         <div class="modal fade" id="addBookModal" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog" role="form">
-              <form action='/koobdda' method="POST">
+              <form action='/koobdda' method="POST" enctype="multipart/form-data">
                 <div class="modal-content">
                   <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">Enter Book Details</h5>
@@ -55,6 +55,10 @@
                       <label for="book_categories">Book Categories</label>
                       <input type="text" class="form-control"  id="book_categories" name="book_categories"  placeholder="Book Categories separated by commas" required oninvalid="this.setCustomValidity('Enter Valid Book Categories')"
                       oninput="this.setCustomValidity('')">
+                    </div>
+                     <div class="form-group">
+                      <label for="book_cover">Book Cover (size must be less than 1mb)</label>
+                      <input type="file" class="form-control" accept="image/*" id="book_cover" name="book_cover">
                     </div>
                   </div>
                   <div class="modal-footer">

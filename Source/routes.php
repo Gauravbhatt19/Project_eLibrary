@@ -17,18 +17,19 @@ switch ($request) {
      else{
         echo "Error4..!";
     }
-} else{
+} elseif(isset($_GET['code'])){
+    require __DIR__.'/Controllers/readersAuth/GmailRegistration.php';
+} elseif(isset($_GET['secret'])){
+     require __DIR__.'/Controllers/readersAuth/verifyRegistration.php';
+} 
+else{
    http_response_code(404);
-   require __DIR__ . '/Views/404.php';
+   require_once __DIR__ . '/Views/404.php';
 }    
 break;
-    // case '/adminlogincheck' :
-
-        // require __DIR__ . '/Controllers/adminAuth/LoginController.php';
-    // break;
 default:
 http_response_code(404);
-require __DIR__ . '/Views/404.php';
+require_once __DIR__ . '/Views/404.php';
 break;
 }
 ?>

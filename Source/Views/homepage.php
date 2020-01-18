@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <?php
   require __dir__.'/'.'../resources/bootstrap/bootstrap4_header.php';
+  require_once __dir__.'/'."../resources/gmail_login/config.php";
+  $loginURL = $gClient->createAuthUrl();
   ?>    
   <title>eLibrary</title>
   <script type="text/javascript">
@@ -61,11 +63,12 @@
             oninput="this.setCustomValidity('')" >
           </div>
           <br>
-          <div class="row">
-           <span class="col-md-4"><button type="submit" class="btn btn-success btn-block" style="">Register</button>
-           </span>
-           <span class="col-md-8 text-center">Or &nbsp;&nbsp;&nbsp;&nbsp;Register using&nbsp;&nbsp;<a href="http://www.google.com" class="text-danger"><i class="fas fa-envelope"></i><u>Gmail</u></a></span></div>
-         </form>
+            <div class="row">
+       <span class="col-md-4">
+        <button type="submit" class="btn btn-success btn-block">Register</button>
+      </span>
+    </div>
+        </form>
        </div>
      </div>
    </div>
