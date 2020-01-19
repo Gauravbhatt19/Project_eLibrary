@@ -1,4 +1,5 @@
 <?php
+require __dir__.'/'.'../../Controllers/Auth/checkAuthentication.php';
 require __dir__.'/'.'../../Controllers/connection.php';
 if(isset($_POST['book_name']) and isset($_POST['author_name']) and isset($_POST['book_edition']) and isset($_POST['book_categories'])){
     $book_name=mysqli_escape_string($conn,$_POST['book_name']);
@@ -9,9 +10,9 @@ if(isset($_POST['book_name']) and isset($_POST['author_name']) and isset($_POST[
     $result=mysqli_query($conn,$qry);
     if(isset($result)){
         $target_dir = __dir__.'/'.'../../resources/uploads/';   
-        $filename=basename($_FILES["book_cover"]["name"]);
-        $filename=explode('.',$filename);
-        $filename=$book_name.$author_name.$edition.".".$filename[1];      
+        // $filename=basename($_FILES["book_cover"]["name"]);
+        // // $filename=explode('.',$filename);
+        $filename=$book_name.$edition.".jpg";      
         $target_file = $target_dir . $filename;
         $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));

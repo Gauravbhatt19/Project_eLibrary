@@ -1,4 +1,5 @@
 <?php
+require __dir__.'/'.'../../Controllers/Auth/checkAuthentication.php';
 require __dir__.'/'.'../../Controllers/connection.php';
 session_start();
 $bid=$_GET['bid'];

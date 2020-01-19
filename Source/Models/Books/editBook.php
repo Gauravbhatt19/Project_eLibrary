@@ -1,4 +1,5 @@
 <?php
+require __dir__.'/'.'../../Controllers/Auth/checkAuthentication.php';
 require __dir__.'/'.'../../Controllers/connection.php';
 if(isset($_POST['book_name']) and isset($_POST['author_name']) and isset($_POST['book_edition']) and isset($_POST['book_categories']) and isset($_POST['bid'])){
 	$bid=mysqli_escape_string($conn,$_POST['bid']);

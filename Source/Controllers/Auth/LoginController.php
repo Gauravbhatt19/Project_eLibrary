@@ -47,4 +47,7 @@ elseif(isset($_POST['emailid'])) {
        }
     }
   }
+  else{
+           echo "<script type='text/javascript'>   window.setTimeout(function() { window.location='/';},0);</script>";
+            }
 ?>

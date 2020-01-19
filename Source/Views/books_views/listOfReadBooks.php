@@ -9,7 +9,7 @@ while($row=mysqli_fetch_assoc($result)):  ?>
       if(checkUser($row['readers_id'],$_SESSION['uid'])):
   ?>
   <div class="card col-lg-5 col-md-3 col-sm-5 m-2">
-    <?php $fetch='../../resources/uploads/'.$row['book_name'].$row['author_name'].$row['edition'].".jpg";
+    <?php $fetch='../../resources/uploads/'.$row['book_name'].$row['edition'].".jpg";
      echo "<img class='mt-3' style='height:250px;' src='".$fetch."' alt='Book Cover'>";
     ?>
     <div class="card-body">

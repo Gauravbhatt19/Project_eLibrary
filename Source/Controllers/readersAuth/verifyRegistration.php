@@ -11,7 +11,9 @@ $qry="SELECT * FROM readers WHERE email='{$emailid}'";
 $qry="UPDATE readers SET verified_id='1' WHERE email='{$emailid}'";
       $result=mysqli_query($conn,$qry);
            echo "<script type='text/javascript'>   window.setTimeout(function() { alert( 'Successfully Verified !' ); window.location='/';},0);</script>";
-         }
+         }  else{
+           echo "<script type='text/javascript'>   window.setTimeout(function() { alert( 'Verification Fail ! Try Again..!' ); window.location='/';},0);</script>";
+            }
            
            }
         else{

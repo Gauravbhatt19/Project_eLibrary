@@ -4,6 +4,19 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <?php
+  require __dir__.'/'.'../../Controllers/Auth/checkAuthentication.php';
+   if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
+  if(isset($_SESSION['users_type']))
+  {   if($_SESSION['users_type']=='admin');
+    elseif($_SESSION['users_type']=='reader')
+      header("location:/readers");
+  }
+  else{
+    session_destroy();
+  }
   require __dir__.'/'.'../../resources/bootstrap/bootstrap4_header.php';
   ?>    
   <title>eLibrary | Admins Dashboard</title>
