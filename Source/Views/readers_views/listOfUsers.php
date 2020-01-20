@@ -4,7 +4,7 @@
       <tr class="text-center">
         <th scope="col">#</th>
         <th scope="col" class="text-left">Full Name</th>
-        <th scope="col">No. of Books Read</th>
+        <th scope="col">Status</th>
       </tr>
     </thead>
     <tbody>
@@ -15,7 +15,9 @@
       <tr>
         <th class="text-center"><?=$i++?></th>
         <td><?=$row['user_name'] ?></td>
-        <td class="text-center"><?=$row['no_of_books_read'] ?></td>
+        
+          <?php if($row['verified_id']) echo "<td class='text-center text-success'>Verified</td>";
+          else echo "<td class='text-center text-danger'>Unverified</td>"; ?>
       </tr>
     <?php endwhile;?>
   </tbody>

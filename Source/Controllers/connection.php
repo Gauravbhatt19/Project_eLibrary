@@ -1,9 +1,9 @@
 <?php 
-$hostname="127.0.0.1";
+$hostname="localhost";
 $username="root";
-$password=NULL;
+$password="Gaurav@19";
 $db_name="elibrary_db";
-$conn=mysqli_connect($hostname,$username,"",$db_name);
-if(!isset($conn))
-    die("Database Connection Error..! Invalid Credentials !");
+$conn=mysqli_connect($hostname,$username,$password,$db_name);
+ if(!isset($conn))
+ die("Database Connection Error..! Invalid Credentials !");
 ?>

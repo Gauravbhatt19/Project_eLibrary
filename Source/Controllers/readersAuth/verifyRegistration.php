@@ -6,9 +6,9 @@ $qry="SELECT * FROM readers WHERE email='{$emailid}'";
       $result=mysqli_query($conn,$qry);
       if($result){
         $db_values=mysqli_fetch_assoc($result);
-        $db_pass=$db_values['password'];
-        if($pass===$db_pass){
-$qry="UPDATE readers SET verified_id='1' WHERE email='{$emailid}'";
+        $db_pass="dawdg".$db_values['password'];
+         if(strpos($db_pass,$pass)){
+ $qry="UPDATE readers SET verified_id='1' WHERE email='{$emailid}'";
       $result=mysqli_query($conn,$qry);
            echo "<script type='text/javascript'>   window.setTimeout(function() { alert( 'Successfully Verified !' ); window.location='/';},0);</script>";
          }  else{

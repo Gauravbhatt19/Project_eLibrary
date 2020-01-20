@@ -18,7 +18,7 @@
   else{
     session_destroy();
   }
-  require __dir__.'/'.'../../resources/bootstrap/bootstrap4_header.php';
+  require __dir__.'/'.'../../resources/bootstrap/bootstrap4_css.php';
   ?>    
   <title>eLibrary | Readers Dashboard</title>
   <script type="text/javascript">
@@ -31,7 +31,7 @@
   ?>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md m-3">
+      <div class="col-lg m-3">
         <div class="border border-secondary p-4 rounded bg-light">
           <h5 class="text-center">Books Available</h5>                
           <?php
@@ -39,9 +39,9 @@
           ?>            
         </div>
       </div>
-      <div class="col-md m-3">
+      <div class="col-lg m-3">
        <div class="border border-secondary p-4 rounded bg-light">
-        <h5 class="text-center">Wanna Read Again ?</h5>
+        <h5 class="text-center">Books Read</h5>
         <?php
         include __dir__.'/'.'../books_views/listOfReadBooks.php';
         ?> 
@@ -53,7 +53,7 @@
 include __dir__.'/'.'../common/footer.php';
 ?>
 <?php
-require __dir__.'/'.'../../resources/bootstrap/bootstrap4_footer.php';
+require __dir__.'/'.'../../resources/bootstrap/bootstrap4_js.php';
 ?>
 </body>
 </html>

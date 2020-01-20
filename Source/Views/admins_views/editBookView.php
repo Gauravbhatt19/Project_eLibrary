@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <?php
-  require __dir__.'/'.'../../resources/bootstrap/bootstrap4_header.php';
+  require __dir__.'/'.'../../resources/bootstrap/bootstrap4_css.php';
   ?>    
   <title>eLibrary | Readers Dashboard</title>
   <script type="text/javascript">
@@ -19,7 +19,7 @@
   $result=mysqli_query($conn,$qry);
   $row=mysqli_fetch_assoc($result);
   $book_name=$row['book_name'];
-  $book_categories=$row['book_categories'];
+  $book_categories=$row['categories_id'];
   $author_name=$row['author_name'];
   $edition=$row['edition'];
   ?>
@@ -27,7 +27,7 @@
     <div class="row">
       <div class="col-md m-3">
         <div class="modal-dialog" role="form">
-          <form action='/koobdom' method="POST">
+          <form action='/koobdom' method="POST" enctype="multipart/form-data">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">Edit Book Details</h5>
@@ -48,11 +48,32 @@
                   <input type="text" class="form-control" id="book_edition" name="book_edition"  value="<?=$edition?>"required oninvalid="this.setCustomValidity('Enter Valid Book Edition')"
                   oninput="this.setCustomValidity('')">
                 </div>
-                <div class="form-group">
-                  <label for="book_categories">Book Categories</label>
-                  <input type="text" class="form-control"  id="book_categories" name="book_categories"   value="<?=$book_categories?>" required oninvalid="this.setCustomValidity('Enter Valid Book Categories')"
-                  oninput="this.setCustomValidity('')">
+                 <div class="form-group">Book Categories:
+                      <?php
+                      $qry23="SELECT * FROM book_categories";
+                      $result23=mysqli_query($conn,$qry23);
+                      $i=1;
+
+              ?>
+                       <div class="input-group">
+                    <?php
+                      
+                       while($row23=mysqli_fetch_assoc($result23)){
+                        if(strpos($book_categories,$row23['cid']))
+                echo "<label for='cat".$i."' class='form-control'>".$row23['category_name']." <input type='checkbox' name='cat".$i."' id='cat".$i."' value='".$row23['cid']."' checked></label>";
+                        
+                else
+                  echo "<label for='cat".$i."' class='form-control'>".$row23['category_name']." <input type='checkbox' name='cat".$i."' id='cat".$i."' value='".$row23['cid']."'></label>";
+                        $i++;
+                  if($i%3==0)
+                          echo "</div><div class='input-group'>";
+                }     ?>
+              </div>
+                    </div>
                   <input type="hidden" name="bid"   value="<?=$bid?>">
+                <div class="form-group">
+                  <label for="book_cover">Want to change Book Cover</label>
+                  <input type="file" class="form-control" accept="image/*" id="book_cover" name="book_cover">
                 </div>
               </div>
               <div class="modal-footer">
@@ -70,7 +91,7 @@
 include __dir__.'/'.'../common/footer.php';
 ?>
 <?php
-require __dir__.'/'.'../../resources/bootstrap/bootstrap4_footer.php';
+require __dir__.'/'.'../../resources/bootstrap/bootstrap4_js.php';
 ?>
 </body>
 </html>

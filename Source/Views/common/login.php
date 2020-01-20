@@ -15,7 +15,7 @@
         <label for="password">Password</label>
         <input type="password" class="form-control" id="password" placeholder="Password" name="password" required oninvalid="this.setCustomValidity('Enter Valid password')"
         oninput="this.setCustomValidity('')">
-       
+        
       </div>
       <br>
       <div class="row">
@@ -23,7 +23,7 @@
         <button type="submit" class="btn btn-success btn-block">Login</button>
       </span>
       <?php if ($id!='off_admin'): ?>
-         <span class="col-md-8 text-center">Or&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Login using&nbsp;&nbsp;<button class="text-danger btn btn-link" onclick="window.location = '<?php echo $loginURL ?>';"><i class="fas fa-envelope"></i>Gmail</button></span>
-      <?php endif; ?>
-    </div>
-  </form>
+       <span class="col-md-8 text-center">Or&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Login using&nbsp;&nbsp;<button type='button' class="text-danger btn btn-link" onclick="window.location = '<?php echo $loginURL ?>';"><i class="fas fa-envelope"></i>Gmail</button></span>
+     <?php endif; ?>
+   </div>
+ </form>

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <?php
-  require __dir__.'/'.'../../resources/bootstrap/bootstrap4_header.php';
+  require __dir__.'/'.'../../resources/bootstrap/bootstrap4_css.php';
   ?>    
   <title>eLibrary</title>
   <script type="text/javascript">
@@ -36,7 +36,7 @@
 include __dir__.'/'.'../common/footer.php';
 ?>
 <?php
-require __dir__.'/'.'../../resources/bootstrap/bootstrap4_footer.php';
+require __dir__.'/'.'../../resources/bootstrap/bootstrap4_js.php';
 ?>
 </body>
 </html>

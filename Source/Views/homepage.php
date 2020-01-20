@@ -14,7 +14,7 @@
   else{
     session_destroy();
   }
-  require __dir__.'/'.'../resources/bootstrap/bootstrap4_header.php';
+  require __dir__.'/'.'../resources/bootstrap/bootstrap4_css.php';
   require_once __dir__.'/'."../resources/gmail_login/config.php";
   $loginURL = $gClient->createAuthUrl();
   ?>    
@@ -87,7 +87,7 @@
  include __dir__.'/common/footer.php';
  ?>
  <?php
- require __dir__.'/'.'../resources/bootstrap/bootstrap4_footer.php';
+ require __dir__.'/'.'../resources/bootstrap/bootstrap4_js.php';
  ?>
 </body>
 </html>

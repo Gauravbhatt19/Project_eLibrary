@@ -14,8 +14,19 @@ while($row=mysqli_fetch_assoc($result)):  ?>
     ?>
     <div class="card-body">
       <h5 class="card-title"><?=$row['book_name'] ?></h5>
-      <p class="card-text"><?=$row['edition'] ?><br/><?=$row['author_name'] ?></p>
-      <p class="card-text"><?=$row['book_categories'] ?></p>
+      <p class="card-text"><?=$row['edition'] ?><br/>by <?=$row['author_name'] ?></p>
+      <p class="card-text"><?php $cat=explode(',',$row['categories_id']);
+                $i=0;
+                while(isset($cat[$i])):
+              $qry="SELECT * FROM book_categories WHERE cid='$cat[$i]'";
+                  $res=mysqli_query($conn,$qry);
+                  $rwo=mysqli_fetch_assoc($res);
+              ?>
+            <span class="badge badge-secondary"><?=$rwo['category_name'] ?></span>
+            <?php 
+            $i++;
+          endwhile;
+            ?></p><br>
       <?php 
       $bid=$row['bid'];
       if($id=='reader') { echo "<a href='/nu?bid={$bid}' class='text-danger'>Uncheck</a>"; }
