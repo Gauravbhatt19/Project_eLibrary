@@ -8,4 +8,4 @@ class QueryBuilder{
 		return (mysqli_fetch_assoc($result));
 	}
 }
-?>
+?>	
