@@ -1,3 +1,1 @@
-config*.*
-create*.*
-insert*.*
+*config*.* *create*.* *insert*.*
