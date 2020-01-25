@@ -10,6 +10,11 @@ class QueryBuilder{
 		else
 			return NULL;
 	}
+	public function fetchList($table){
+		$qry="SELECT * FROM {$table}";
+		$result=mysqli_query($GLOBALS['conn'],$qry);		
+		return $result;
+	}	
 	public function insert($table,$names,$values){	
 		$names=implode(',',$names);
 		$values=implode(',',$values);

@@ -7,6 +7,9 @@ class Users extends QueryBuilder{
 		$values=explode(',',$values);
 		return parent::fetchOne($this->table,$this->names,$values);
 	}
+	public function fetchUsers(){
+		return parent::fetchList($this->table);
+	}
 	public function flashError($msg,$dir){
 		$dir=isset($_POST['loginid'])?$dir."/admin":$dir;
 		echo "<script type='text/javascript'>window.setTimeout(function() { alert( '{$msg}  Try Again..!' ); window.location='{$dir}';},0);</script>";

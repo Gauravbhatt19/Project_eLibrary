@@ -9,6 +9,9 @@ $router->define([
 	'registration'=>'Controllers/auth/registration.php',
 	'verifymsg'=>'Views/users/unVerifiedUser.view.php',
 	'verify'=>'Controllers/auth/verifyRegistration.php',
-	'gmail'=>'Controllers/auth/GmailRegistration.php'
+	'gmail'=>'Controllers/auth/GmailRegistration.php',
+	'addcat'=>'Controllers/bookCategories/AddCategory.php',
+	'editcat'=>'Controllers/bookCategories/EditCategory.php',
+	'delcat'=>'Controllers/bookCategories/DeleteCategory.php'
 ]);
 ?>
