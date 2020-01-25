@@ -29,7 +29,7 @@ if($id=='admin'): ?>
 							<a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="./?id=admin">Admin</a>
+							<a class="nav-link" href="./admin?id=admin">Admin</a>
 						</li>
 					</ul>
 				</div>
@@ -52,7 +52,7 @@ if($id=='admin'): ?>
 									<?php endif; ?>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" href="./?do=logout">Logout</a>
+									<a class="nav-link" href="./logout">Logout</a>
 								</li>
 							</ul>
 						</div>
