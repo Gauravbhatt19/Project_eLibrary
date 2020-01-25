@@ -2,8 +2,10 @@
 if (session_status() == PHP_SESSION_NONE) {
 	session_start();
 }
-
-require __dir__.'/'.'../auth/checkAuthentication.php';
+function flashError($msg,$dir){
+	$dir=isset($_POST['loginid'])?$dir."?id=admin":$dir;
+	echo "<script type='text/javascript'>window.setTimeout(function() { alert( '{$msg} ! Try Again..!' ); window.location='{$dir}';},0);</script>";
+}
 function verify($row,$pass){
 	if(isset($row)){
 		if(password_verify($pass, $row['password'])){
@@ -11,13 +13,11 @@ function verify($row,$pass){
 			$uid=$row['uid'];
 			require __dir__.'/'.'../common/setUserSession.php';
 		}
-		else{ 
-			echo "<script type='text/javascript'>window.setTimeout(function() { alert( 'Invalid Password ! Try Again..!' ); window.location='/';},0);</script>";
-		}
+		else
+			flashError('Invalid Password','/');
 	}
-	else{ 
-		echo "<script type='text/javascript'>window.setTimeout(function() { alert( 'Invalid Login Id or Password ! Try Again..!' ); window.location='/';},0);</script>";
-	}
+	else	
+		flashError('Invalid Login Id or Password','/');
 }
 if(!isset($_SESSION['uid'])){
 	if(isset($_POST['loginid']) || isset($_POST['emailid']) ) {
@@ -28,32 +28,23 @@ if(!isset($_SESSION['uid'])){
 			$row=$user->fetchUser($name);
 			verify($row,$pass);
 		}
-		else{ 
-			echo "<script type='text/javascript'>window.setTimeout(function() { alert( 'Please enter Password ! Try Again..!' ); window.location='/?id=admin';},0);</script>";
-		}
+		else
+			flashError('Please enter Password','/');
 	}
-	else{ 
-		echo "<script type='text/javascript'>window.setTimeout(function() { alert( 'Please Enter login Id ! Try Again..!' ); window.location='/?id=admin';},0);</script>";
-	}
+	else
+		flashError('Please Enter login Id','/');
 }
-
-require __dir__.'/'.'../../Controllers/auth/checkAuthentication.php';
-require __dir__.'/'.'../../Views/common/header.view.php';
+require __dir__.'/'.'../auth/checkAuthentication.php';
 if (isset($_SESSION['type'])){
+	require __dir__.'/'.'../../Views/common/header.view.php';	
 	if($_SESSION['type']=='inadmin'){
 		echo 'Hello Admin';
 	}
 	elseif ($_SESSION['type']=='inreader') {
 		echo 'Hello User';	
 	}
-	else {
+	else 
 		header('location:/');
-	}
+	require __dir__.'/'.'../../Views/common/footer.view.php';
 }
-require __dir__.'/'.'../../Views/common/footer.view.php';
-
-
-
-
-
 ?>
