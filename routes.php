@@ -1,0 +1,12 @@
+<?php
+$router->define([	
+	''=>'Controllers/common/home.php',
+	'?id=admin'=>'Controllers/common/home.php',
+	'?do=logout'=>'Controllers/auth/logout.php',
+	'index.php'=>'Controllers/common/home.php',
+	'index'=>'Controllers/common/home.php',
+	'login'=>'Controllers/auth/login.php',
+	'about/culture'=>'controllers/about-culture.php',
+	'contact'=>'controllers/contact.php'
+]);
+?>

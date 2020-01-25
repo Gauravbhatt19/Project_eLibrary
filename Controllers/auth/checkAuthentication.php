@@ -1,0 +1,11 @@
+<?php
+if(isset($_SESSION['uid'])){
+	$id=$_SESSION['type'];
+}
+elseif(isset($_GET['id'])){
+	$id=$_GET['id'];
+}
+else{
+	$id='reader';
+}
+?>

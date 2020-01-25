@@ -1,0 +1,1 @@
+CREATE TABLE book_categories(cid INT PRIMARY KEY AUTO_INCREMENT,login_name VARCHAR(250) UNIQUE);
