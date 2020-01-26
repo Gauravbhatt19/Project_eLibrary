@@ -11,7 +11,7 @@ class Users extends QueryBuilder{
 		return parent::fetchList($this->table);
 	}
 	public function flashError($msg,$dir){
-		$dir=isset($_POST['loginid'])?$dir."/admin":$dir;
+		$dir=isset($_POST['loginid'])?$dir."/localhost/admin?id=admin":$dir;
 		echo "<script type='text/javascript'>window.setTimeout(function() { alert( '{$msg}  Try Again..!' ); window.location='{$dir}';},0);</script>";
 	}
 	public function verify($row,$pass){
@@ -68,6 +68,17 @@ class Users extends QueryBuilder{
 			$this->flashError('Verification Done..! Do not ','/');	
 		else
 			$this->flashError('Problem in Verification ','/');	
+	}
+	public function readBook($uid,$bid){
+		$this->names=['uid','bid'];
+		$this->values=["'{$uid}'","'{$bid}'"];
+		parent::insert('has_book',$this->names,$this->values);	
+	}
+	public function unreadBook($uid,$bid){
+	parent::delete2('has_book','uid',$uid,'bid',$bid);	
+	}
+	public function fetchBooks($uid){
+		return (parent::fetchList('has_book','uid',$uid));
 	}
 }
 ?>

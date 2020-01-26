@@ -26,6 +26,11 @@ class QueryBuilder{
 		$qry="DELETE FROM {$table} WHERE {$name}= '{$value}'";
 		$result=mysqli_query($GLOBALS['conn'],$qry);
 		return ($result);
+	}
+	public function delete2($table,$name1,$value1,$name2,$value2){
+		$qry="DELETE FROM {$table} WHERE {$name1}= '{$value1}' and {$name2}= '{$value2}'";
+		$result=mysqli_query($GLOBALS['conn'],$qry);
+		return ($result);
 	}	
 	public function update($table,$update,$check,$id){	
 		$str=',';

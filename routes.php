@@ -15,6 +15,7 @@ $router->define([
 	'delcat'=>'Controllers/bookCategories/DeleteCategory.php',
 	'editbook'=>'Controllers/books/EditBook.php',
 	'delbook'=>'Controllers/books/DeleteBook.php',
-	'addbook'=>'Controllers/books/AddBook.php'
+	'addbook'=>'Controllers/books/AddBook.php',
+	'readbook'=>'Controllers/books/ReadBook.php'
 ]);
 ?>

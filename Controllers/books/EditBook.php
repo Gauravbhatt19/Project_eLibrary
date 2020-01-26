@@ -21,6 +21,34 @@ if(isset($_POST['book_name']) and isset($_POST['author_name']) and isset($_POST[
 	$book->updateBook($booknames,$bookvalues,$bid);
 	$book->deleteAllCategories($bid);
 	$book->enterCategories($bid,$categories);
+	if($_FILES["book_cover"]["name"]){
+		$t=substr($book_name,0,5);
+		$i=substr($edition,0,5);
+		$title=str_replace(' ','',$t).str_replace(' ', '', $i);		
+		$target_dir = __dir__.'/'.'../../resources/uploads/';   
+		$filename=$title.".jpg";      
+		$target_file = $target_dir . $filename;
+		$uploadOk = 1;
+		$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+		if ($_FILES["book_cover"]["size"] > 1048576) {
+			Users::flashError('Sorry, your file is too large. ','/login');
+			die();
+		}
+		if($imageFileType != "jpg") {
+			Users::flashError('Upload File is not jpg Image ','/login');
+			die();
+		}
+		$deltitle=$_POST['cover_name'];
+		$delfilename=$deltitle.".jpg";      
+		$delfile_pointer = __dir__.'/'.'../../resources/uploads/'.$delfilename;  
+		unlink($delfile_pointer); 
+		$booknames=['cover_image_name'];
+		$bookvalues=[$title];
+		$book->updateBook($booknames,$bookvalues,$bid);
+		if (!move_uploaded_file($_FILES["book_cover"]["tmp_name"], $target_file)) {	
+			Users::flashError('Error in cover uploading ','/login');
+		}
+	}
 	header('location:/login');
 }
 if(isset($_GET['bid'])){
@@ -29,6 +57,7 @@ if(isset($_GET['bid'])){
 	$book_name=$rows['book_name'];
 	$author_name=$rows['author_name'];
 	$edition=$rows['edition'];
+	$cover=$rows['cover_image_name'];
 	require __dir__.'/'.'../../Views/books/editbook_form.view.php';
 }
 // else

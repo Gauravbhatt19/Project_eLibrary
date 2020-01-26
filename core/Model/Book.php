@@ -19,6 +19,7 @@ class Books extends QueryBuilder{
 	}
 	public function deleteBook($bid){
 		$this->deleteAllCategories($bid);
+		$this->deleteAllReaders($bid);
 		return parent::delete($this->table,'bid',$bid);
 	}
 	public function registerBook($bookname,$authorname,$edition,$title){
@@ -35,6 +36,9 @@ class Books extends QueryBuilder{
 	}
 	public function deleteAllCategories($bid){
 		parent::delete('has_category','bid',$bid);
+	}
+	public function deleteAllReaders($bid){
+		parent::delete('has_book','bid',$bid);
 	}
 	public function fetchCategories($bid){
 		return (parent::fetchList('has_category','bid',$bid));

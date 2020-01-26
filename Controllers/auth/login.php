@@ -9,8 +9,6 @@ if (isset($_SESSION['token']) and isset($_SESSION['loginid'])) {
 	if($_SESSION['token']==$row['provider_id']){
 		$type=$row['type'];    			
 		$uid=$row['uid'];
-		session_unset($_SESSION['token']);
-		session_unset($_SESSION['loginid']);
 		require __dir__.'/'.'../../Controllers/common/setUserSession.php';
 	}
 }
@@ -37,7 +35,8 @@ if (isset($_SESSION['type'])){
 		require __dir__.'/'.'../books/ListBooks.php';
 	}
 	elseif ($_SESSION['type']=='inreader') {
-		echo 'Hello User';	
+	require __dir__.'/'.'../books/ListBooks.php';	
+	require __dir__.'/'.'../books/UserBooks.php';	
 	}
 	else 
 		header('location:/');

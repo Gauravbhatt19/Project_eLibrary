@@ -23,15 +23,33 @@
                   <span class="card-text badge badge-secondary"><?=$cname ?></span> 
                 <?php endwhile;?>
                 <br>
-                 <br>
-                <a <?="href='/editbook?bid={$bid}'"?> class='card-link'>Edit</a>
-                <a <?="href='/delbook?bid={$bid}'"?> class='card-link'>Delete</a>
+                <br>
+                <?php if($_SESSION['type']=='inreader'): 
+                  $booksRead=$user->fetchBooks($uid);
+                  $ch=$booksRead->fetch_all();
+                  $check=NULL;
+                  foreach ($ch as $val) {
+                   if(in_array($bid, $val))
+                     $check='checked';
+                 }
+                  if(!$check): ?>
+                  <a <?="href='/readbook?bid={$bid}'"?> class='card-link'>Read Book</a>
+                <?php else: ?>
+                  <a <?="href='/readbook?dbid={$bid}'"?> class='card-link text-danger'>Uncheck</a> 
+              <?php endif; ?> 
+              <?php endif; ?>
+                <?php if($_SESSION['type']=='inadmin'): ?>
+                  <a <?="href='/editbook?bid={$bid}'"?> class='card-link'>Edit</a>
+                  <a <?="href='/delbook?bid={$bid}'"?> class='card-link'>Delete</a>
+                <?php endif; ?>
               </div>
             </div>
           <?php endwhile;?>
         </div>
-        <button type="button" class="btn btn-light mt-3" data-toggle="modal" data-target="#addBookModal">Add Book</button>  
-        <?php  require __dir__.'/'.'../../Views/books/addBook_form.view.php'; ?>
+        <?php if($_SESSION['type']=='inadmin'): ?>
+          <button type="button" class="btn btn-light mt-3" data-toggle="modal" data-target="#addBookModal">Add Book</button>  
+          <?php  require __dir__.'/'.'../../Views/books/addBook_form.view.php'; ?>
+        <?php endif; ?>
       </div>
     </div>
   </div>

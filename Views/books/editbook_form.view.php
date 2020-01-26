@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md m-3">
       <div class="modal-dialog" role="form">
-        <form action='/editbook' method="POST">
+        <form action='/editbook' method="POST" enctype="multipart/form-data">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLongTitle">Edit Book Details</h5>
@@ -39,7 +39,7 @@
                      $check='checked';
                  }
                  ?>
-                 <label <?="for='{$makeId}'"?> class='form-control'><?=$cname?> <input type='checkbox' <?="name='{$makeId}' id='{$makeId}'  value='{$cid}' {$check}"?> ></label>
+                 <label <?="for='{$makeId}'"?> class='form-control'><?=$cname?> <input type='checkbox'  <?="name='{$makeId}' id='{$makeId}'  value='{$cid}' {$check}"?> ></label>
                  <?php 
                  if($i%2==0):
                   ?>
@@ -52,7 +52,13 @@
               ?>
             </div>
           </div>
+          <div class="form-group">
+            <label for="book_cover">New Book Cover (size must be less than 1mb)</label>
+             <small class="form-text text-muted">Previous image will be automatically deleted, only if you upload.</small>
+            <input type="file" class="form-control" accept="image/*" id="book_cover" name="book_cover">
+          </div>
           <input type="hidden" name="bid"   value="<?=$bid?>">
+         <input type="hidden" name="cover_name"   value="<?=$cover?>">
         </div>
         <div class="modal-footer">
           <a class="btn btn-secondary" href='/login'>Close</a>

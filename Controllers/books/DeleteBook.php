@@ -11,6 +11,6 @@ if(isset($_GET['bid'])){
 		header('location:/login');
 	}
 	else
-		Users::flashError('Error in Deleting ','/admins');
+		Users::flashError('Error in Deleting ','/login');
 }
 ?>
