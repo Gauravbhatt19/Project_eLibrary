@@ -10,8 +10,8 @@ class QueryBuilder{
 		else
 			return NULL;
 	}
-	public function fetchList($table){
-		$qry="SELECT * FROM {$table}";
+	public function fetchList($table,$name=1,$value=1){
+		$qry="SELECT * FROM {$table} WHERE {$name}={$value}";
 		$result=mysqli_query($GLOBALS['conn'],$qry);		
 		return $result;
 	}	
@@ -20,7 +20,7 @@ class QueryBuilder{
 		$values=implode(',',$values);
 		$qry="INSERT INTO {$table} ({$names}) VALUES ({$values})";
 		$result=mysqli_query($GLOBALS['conn'],$qry);
-		return ($result);
+		return ($GLOBALS['conn']->insert_id);
 	}	
 	public function delete($table,$name,$value){	
 		$qry="DELETE FROM {$table} WHERE {$name}= '{$value}'";

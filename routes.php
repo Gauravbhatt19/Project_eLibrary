@@ -12,6 +12,9 @@ $router->define([
 	'gmail'=>'Controllers/auth/GmailRegistration.php',
 	'addcat'=>'Controllers/bookCategories/AddCategory.php',
 	'editcat'=>'Controllers/bookCategories/EditCategory.php',
-	'delcat'=>'Controllers/bookCategories/DeleteCategory.php'
+	'delcat'=>'Controllers/bookCategories/DeleteCategory.php',
+	'editbook'=>'Controllers/books/EditBook.php',
+	'delbook'=>'Controllers/books/DeleteBook.php',
+	'addbook'=>'Controllers/books/AddBook.php'
 ]);
 ?>

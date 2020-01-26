@@ -1,7 +1,7 @@
 <div class="col-lg m-1">
  <div class="border border-secondary p-4 rounded bg-light">
   <h5 class="text-center">Categories</h5>
-  <div class="table-responsive">
+  <div class="table-responsive" style="height: 250px; overflow-y:scroll;">
     <table class="table">
       <thead>
         <tr class="text-center">
@@ -11,9 +11,9 @@
           <th scope="col">Action 2</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody >
         <?php $i=1;
-        while($row=mysqli_fetch_assoc($rows)):  ?>
+        while($row=mysqli_fetch_assoc($categories)):  ?>
           <tr>
             <th class="text-center"><?=$i++?></th>
             <td><?=$row['category_name'] ?></td>

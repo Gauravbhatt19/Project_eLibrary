@@ -31,6 +31,9 @@ class Categories extends QueryBuilder{
 	public function deleteCategory($cid){
 		return parent::delete($this->table,'cid',$cid);
 	}
+	public function deleteAllBooks($cid){
+		parent::delete('has_category','cid',$cid);
+	}
 }
 
 ?>

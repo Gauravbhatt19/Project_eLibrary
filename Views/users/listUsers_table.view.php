@@ -3,7 +3,7 @@
     <div class="col-lg m-1">
      <div class="border border-secondary p-4 rounded bg-light">
       <h5 class="text-center">List of Users</h5>
-      <div class="table-responsive">
+      <div class="table-responsive" style="height: 288px; overflow-y:scroll;">
         <table class="table">
           <thead>
             <tr class="text-center">

@@ -1,7 +1,7 @@
 <?php
 if($id=='admin'): ?>
 	<header>
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
 			<a class="navbar-brand" href="javascript:void(0)">eLibrary</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
@@ -15,10 +15,10 @@ if($id=='admin'): ?>
 			</div>
 		</nav>
 	</header>
-	<div class="mt-5"></div>
+<div style="height: 30px;"></div>
 	<?php elseif($id=='reader'): ?>
 		<header>
-			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
 				<a class="navbar-brand" href="javascript:void(0)">eLibrary</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
@@ -37,7 +37,7 @@ if($id=='admin'): ?>
 		</header>
 		<?php else: ?>
 			<header>
-				<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+				<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
 					<a class="navbar-brand" href="javascript:void(0)">eLibrary</a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
@@ -59,3 +59,4 @@ if($id=='admin'): ?>
 					</nav>
 				</header>
 			<?php endif; ?>
+<div style="height: 80px;"></div>

@@ -1,4 +1,3 @@
-<script type='text/javascript'>
 function passwordMatch(){
   var pass=document.getElementById('rpassword').value;
   var confirmPass=document.getElementById('password1').value;
@@ -11,4 +10,3 @@ function passwordMatch(){
     return false;
   }
 }
-</script>
