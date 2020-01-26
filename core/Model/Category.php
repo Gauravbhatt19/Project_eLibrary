@@ -9,6 +9,9 @@ class Categories extends QueryBuilder{
 	public function fetchCategories(){
 		return parent::fetchList($this->table);
 	}
+	public function fetchBooks($cid){
+		return parent::fetchList('has_category','cid',$cid);
+	}
 	public function freshCategory(){
 		$row=$this->fetchCategory($this->values);
 		if(isset($row))

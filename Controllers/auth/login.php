@@ -6,11 +6,9 @@ $user=new Users;
 if (isset($_SESSION['token']) and isset($_SESSION['loginid'])) {
 	$name=$_SESSION['loginid'];
 	$row=$user->fetchUser($name);
-	if($_SESSION['token']==$row['provider_id']){
 		$type=$row['type'];    			
 		$uid=$row['uid'];
 		require __dir__.'/'.'../../Controllers/common/setUserSession.php';
-	}
 }
 elseif(!isset($_SESSION['uid'])){
 	if(isset($_POST['loginid']) || isset($_POST['emailid']) ) {
@@ -35,6 +33,7 @@ if (isset($_SESSION['type'])){
 		require __dir__.'/'.'../books/ListBooks.php';
 	}
 	elseif ($_SESSION['type']=='inreader') {
+	require __dir__.'/'.'../../Views/bookCategories/filterCategory_form.view.php';
 	require __dir__.'/'.'../books/ListBooks.php';	
 	require __dir__.'/'.'../books/UserBooks.php';	
 	}
