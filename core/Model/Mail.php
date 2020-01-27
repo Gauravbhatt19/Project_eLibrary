@@ -16,6 +16,15 @@ class Mail {
 		}
 		return TRUE; 
 	}
+	public function sendMail($emailid,$name,$body,$subject){
+		$GLOBALS['mail']->addAddress($emailid, $name);
+		$GLOBALS['mail']->Subject  = $subject;
+		$GLOBALS['mail']->Body     = $body;
+		if(!$GLOBALS['mail']->send()) {
+			return FALSE;
+		}
+		return TRUE; 
+	}
 }
 
 

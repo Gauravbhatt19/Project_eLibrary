@@ -75,10 +75,27 @@ class Users extends QueryBuilder{
 		parent::insert('has_book',$this->names,$this->values);	
 	}
 	public function unreadBook($uid,$bid){
-	parent::delete2('has_book','uid',$uid,'bid',$bid);	
+		parent::delete2('has_book','uid',$uid,'bid',$bid);	
 	}
 	public function fetchBooks($uid){
 		return (parent::fetchList('has_book','uid',$uid));
+	}
+	public function fetchLastWeekBooks($uid){
+		$startWeek = date('Y-m-d',strtotime("Sunday Last Week"));
+		$endWeek = date('Y-m-d');
+		$check=" uid='".$uid."' AND transaction_time BETWEEN '".$startWeek."' AND '". $endWeek."'";
+		return (parent::fetchList1('has_book',$check));
+	}
+	public function fetchUsersWithAllBookRead(){
+		$userList=$this->fetchUsers();
+		while($usr=mysqli_fetch_assoc($userList)){
+			if($usr['email_id']!='admin'){
+				
+			}
+				
+		}
+		// return (parent::fetchList1('has_book',$check));
+			}
 	}
 }
 ?>

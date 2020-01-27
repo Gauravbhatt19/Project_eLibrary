@@ -14,6 +14,11 @@ class QueryBuilder{
 		$qry="SELECT * FROM {$table} WHERE {$name}={$value}";
 		$result=mysqli_query($GLOBALS['conn'],$qry);		
 		return $result;
+	}
+	public function fetchList1($table,$whereClause){
+		$qry="SELECT * FROM {$table} WHERE {$whereClause}";
+		$result=mysqli_query($GLOBALS['conn'],$qry);		
+		return $result;
 	}	
 	public function insert($table,$names,$values){	
 		$names=implode(',',$names);
