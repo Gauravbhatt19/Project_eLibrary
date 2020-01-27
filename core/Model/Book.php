@@ -52,5 +52,11 @@ class Books extends QueryBuilder{
 		 }
 		return (parent::update($this->table,$update,'bid',$bid));
 	}
+	public function fetchLastWeekBook(){
+			$date = date("Y-m-d");
+			$days_ago = date('Y-m-d', strtotime('-7 days', strtotime($date)));
+			$check=" last_modify >= '".$days_ago."'";
+			return (parent::fetchList1('books',$check));
+	}
 }
 ?>

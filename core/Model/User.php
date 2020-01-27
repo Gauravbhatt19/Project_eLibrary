@@ -5,12 +5,10 @@ class Users extends QueryBuilder{
 	protected $values=[];
 	public  function fetchUser($values){
 		$values=explode(',',$values);
-		var_dump($values);
 		return parent::fetchOne($this->table,$this->names,$values);
 	}
 	public  function fetchUser1($values){
 		$values=explode(',',$values);
-		var_dump($values);
 		return parent::fetchOne($this->table,['uid'],$values);
 	}
 	public function fetchUsers(){
@@ -107,16 +105,18 @@ class Users extends QueryBuilder{
 		}
 		return $usrIds;
 	}
-	// public function fetchInactiveUsers(){
-	// 	$userList=$this->fetchUsers();
-	// 	$usrIds=[];
-	// 	$book=new Books();
-	// 	while($usr=mysqli_fetch_assoc($userList)){
-	// 		$date = date("Y-m-d");
-	// 		$days_ago = date('Y-m-d', strtotime('-15 days', strtotime($date)));
-	// 		$check=" uid='".$uid."' AND transaction_time >= '".$days_ago."'";
-	// 		parent::fetchList1('has_book',$check);
-	// 	}
-	// }
+	public function fetchInactiveUsers(){
+		$userList=$this->fetchUsers();
+		$usrIds=[];
+		$book=new Books();
+		while($usr=mysqli_fetch_assoc($userList)){
+			$date = date("Y-m-d");
+			$days_ago = date('Y-m-d', strtotime('-15 days', strtotime($date)));
+			$check=" uid='".$usr['uid']."' AND transaction_time >= '".$days_ago."'";
+			if($usr['uid']!=mysqli_fetch_assoc(parent::fetchList1('has_book',$check))['uid'])
+				$usrIds+=[$usr['uid']];
+		}
+	return $usrIds;
+	}
 }
 	?>
