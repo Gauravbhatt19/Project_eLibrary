@@ -107,5 +107,16 @@ class Users extends QueryBuilder{
 		}
 		return $usrIds;
 	}
+	// public function fetchInactiveUsers(){
+	// 	$userList=$this->fetchUsers();
+	// 	$usrIds=[];
+	// 	$book=new Books();
+	// 	while($usr=mysqli_fetch_assoc($userList)){
+	// 		$date = date("Y-m-d");
+	// 		$days_ago = date('Y-m-d', strtotime('-15 days', strtotime($date)));
+	// 		$check=" uid='".$uid."' AND transaction_time >= '".$days_ago."'";
+	// 		parent::fetchList1('has_book',$check);
+	// 	}
+	// }
 }
-?>
+	?>
