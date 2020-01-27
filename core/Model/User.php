@@ -5,7 +5,13 @@ class Users extends QueryBuilder{
 	protected $values=[];
 	public  function fetchUser($values){
 		$values=explode(',',$values);
+		var_dump($values);
 		return parent::fetchOne($this->table,$this->names,$values);
+	}
+	public  function fetchUser1($values){
+		$values=explode(',',$values);
+		var_dump($values);
+		return parent::fetchOne($this->table,['uid'],$values);
 	}
 	public function fetchUsers(){
 		return parent::fetchList($this->table);
@@ -88,14 +94,18 @@ class Users extends QueryBuilder{
 	}
 	public function fetchUsersWithAllBookRead(){
 		$userList=$this->fetchUsers();
+		$usrIds=[];
+		$book=new Books();
 		while($usr=mysqli_fetch_assoc($userList)){
 			if($usr['email_id']!='admin'){
-				
+				$readBooks=mysqli_num_rows($this->fetchBooks($usr['uid']));
+				$allBooks=mysqli_num_rows($book->fetchBooks());
+				if(($readBooks+1)>=$allBooks){
+					$usrIds+=[$usr['uid']]; 
+				}
 			}
-				
 		}
-		// return (parent::fetchList1('has_book',$check));
-			}
+		return $usrIds;
 	}
 }
 ?>

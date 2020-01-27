@@ -37,6 +37,7 @@ if(isset($_POST['book_name']) and isset($_POST['author_name']) and isset($_POST[
 	if (move_uploaded_file($_FILES["book_cover"]["tmp_name"], $target_file)) {
 		if($bid=$book->registerBook($book_name,$author_name,$edition,$title)){
 			$book->enterCategories($bid,$categories);
+			require __dir__.'/'."../AutomatedLogics/bookCompleted.php";
 			header('location:/login');
 		}
 		else

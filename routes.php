@@ -19,6 +19,6 @@ $router->define([
 	'readbook'=>'Controllers/books/ReadBook.php',
 	'filterBook'=>'Controllers/books/CategoryBooks.php',
 	'sendreport'=>'Controllers/users/SendReport.php',
-	'bookCompleted'=>'Controllers/AutomatedLogics/bookCompleted.php'
+	'nudgeInactiveUser'=>'Controllers/AutomatedLogics/nudgingInactiveReaders.php'
 ]);
 ?>
