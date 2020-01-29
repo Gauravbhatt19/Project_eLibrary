@@ -4,14 +4,14 @@ This is the introductory project assigned to me for the web development internsh
 This project is focused on steps involved while dealing with real world problems.
 The basic cyclic steps involved in Software Development phases are as :
 1. Documentation
-        + Problem Description (Detailed and Presized)
-        + Physical Topology
-        + Architecture Specification
-        + Modular File Structure
-        + Databases Schemas
+  &nbsp;&nbsp;&nbsp;+ Problem Description (Detailed and Presized)
+  &nbsp;&nbsp;&nbsp;+ Physical Topology
+  &nbsp;&nbsp;&nbsp;+ Architecture Specification
+  &nbsp;&nbsp;&nbsp;+ Modular File Structure
+  &nbsp;&nbsp;&nbsp;+ Databases Schemas
 2. Development
-  + Database Development
-  + Actual Coding
+  &nbsp;&nbsp;&nbsp;+ Database Development
+  &nbsp;&nbsp;&nbsp;+ Actual Coding
 
 External Sources-
 
