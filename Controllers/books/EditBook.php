@@ -1,4 +1,11 @@
 <?php
+
+if (session_status() == PHP_SESSION_NONE) {
+	session_start();
+}
+if($_SESSION['type']!='inadmin')
+	header("location:/");
+	
 $book = new Books();
 $category = new Categories();
 $categories=$category->fetchCategories();
@@ -60,6 +67,6 @@ if(isset($_GET['bid'])){
 	$cover=$rows['cover_image_name'];
 	require __dir__.'/'.'../../Views/books/editbook_form.view.php';
 }
-// else
-// 	Users::flashError('Error in Updating ','/login');
+else
+	Users::flashError('Error in Updating ','/login');
 ?>

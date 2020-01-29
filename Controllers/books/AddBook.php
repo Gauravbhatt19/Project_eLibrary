@@ -1,4 +1,9 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+	session_start();
+}
+if($_SESSION['type']!='inadmin')
+	header("location:/");
 $book= new Books();
 if(isset($_POST['book_name']) and isset($_POST['author_name']) and isset($_POST['book_edition'])){
 	$book_name=mysqli_escape_string($conn,$_POST['book_name']);

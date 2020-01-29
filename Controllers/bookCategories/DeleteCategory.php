@@ -1,4 +1,9 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+	session_start();
+}
+if($_SESSION['type']!='inadmin')
+	header("location:/");
 $category = new Categories();
 if(isset($_GET['cid'])){
 	$cid=$_GET['cid'];

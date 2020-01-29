@@ -1,4 +1,12 @@
 <?php
+
+if (session_status() == PHP_SESSION_NONE) {
+	session_start();
+}
+if($_SESSION['type']!='inadmin')
+	header("location:/");
+
+	
 $book = new Books();
 if(isset($_GET['bid'])){
 	$bid=$_GET['bid'];

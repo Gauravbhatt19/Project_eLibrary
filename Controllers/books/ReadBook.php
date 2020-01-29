@@ -13,5 +13,7 @@ if(isset($_SESSION['uid'])){
 		$user->unreadBook($uid,$bid);
 		header('location:/login');
 	}
+	else 
+		header("location:/");
 }
 ?>
