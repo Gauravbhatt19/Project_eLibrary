@@ -1,5 +1,4 @@
 # Project eLibrary
-***********
 This is the introductory project assigned to me for the web development internship by ColoredCow. 
 This project is focused on steps involved while dealing with real world problems.
 The basic cyclic steps involved in Software Development phases are as :
@@ -18,8 +17,9 @@ The basic cyclic steps involved in Software Development phases are as :
 4. Project Review 
 	+ UI/UX
 	+ BUG Testing
-	 	
-External Sources-
+
+***********
+## External Sources-
 
 1. [Problem description](https://docs.google.com/document/d/1OeNWKKUx3gUOSr0-32t4WDN_aok-eDfHzm0618eBuuI/edit?usp=sharing)
 2. [Physical Topology](https://docs.google.com/presentation/d/1xq9DzfEkWT1oXf8V4pMKOucN9qwNzPG29axb_u3Ai2M/edit?usp=sharing) 
