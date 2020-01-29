@@ -7,7 +7,7 @@ The basic cyclic steps involved in Software Development phases are as :
   	+ Physical Topology
   	+ Architecture Specification
   	+ Modular File Structure
-  	+ Databases Schemas
+  	+ Database Schemas
 2. Development
   	+ Database Development
   	+ Actual Coding
