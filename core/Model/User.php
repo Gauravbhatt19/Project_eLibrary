@@ -15,8 +15,15 @@ class Users extends QueryBuilder{
 		return parent::fetchList($this->table);
 	}
 	public function flashError($msg,$dir){
-		$dir=isset($_POST['loginid'])?$dir."/localhost/admin?id=admin":$dir;
-		echo "<script type='text/javascript'>window.setTimeout(function() { alert( '{$msg}  Try Again..!' ); window.location='{$dir}';},0);</script>";
+		if (session_status() == PHP_SESSION_NONE) {
+			session_start();
+		}
+		$i=1;
+		foreach ($msg as $values) {
+			$param='error'.$i++;
+			$_SESSION[$param]=$values;
+		}
+		header("location:{$dir}");
 	}
 	public function verify($row,$pass){
 		if(isset($row)){
@@ -31,10 +38,10 @@ class Users extends QueryBuilder{
 				header('location:/login');
 			}
 			else
-				$this->flashError('Invalid Password','/');
+				$this->flashError([NULL,'Invalid Password'],'/');
 		}
 		else	
-			$this->flashError('Invalid Login Id or Password','/');
+			$this->flashError(['Invalid Email Address',' Password'],'/');
 	}
 	public function freshUser($emailid){
 		$row=$this->fetchUser($emailid);
@@ -61,17 +68,14 @@ class Users extends QueryBuilder{
 				}
 				else{
 					$this->deleteUser($emailid);
-					$this->flashError('Internal Error ','/');
+					$this->flashError(['Internal Error, Try Again'],'/index?register=1');
 				}	
 			}
-
 		}
 	}
 	public function activate($emailid){
-		if(parent::update($this->table,['verified_id'=>'1'],'email_id',$emailid))
-			$this->flashError('Verification Done..! Do not ','/');	
-		else
-			$this->flashError('Problem in Verification ','/');	
+		if(!parent::update($this->table,['verified_id'=>'1'],'email_id',$emailid))	
+			$this->flashError(['Problem in Verification'],'/');	
 	}
 	public function readBook($uid,$bid){
 		$this->names=['uid','bid'];
@@ -116,7 +120,7 @@ class Users extends QueryBuilder{
 			if($usr['uid']!=mysqli_fetch_assoc(parent::fetchList1('has_book',$check))['uid'])
 				$usrIds+=[$usr['uid']];
 		}
-	return $usrIds;
+		return $usrIds;
 	}
 }
-	?>
+?>

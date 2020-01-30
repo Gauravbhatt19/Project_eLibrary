@@ -1,11 +1,9 @@
 <?php
-if(isset($_SESSION['uid'])){
-	$id=$_SESSION['type'];
+if (session_status() == PHP_SESSION_NONE) {
+	session_start();
 }
-elseif(isset($_GET['id'])){
-	$id=$_GET['id'];
-}
-else{
-	$id='reader';
-}
+if(isset($_SESSION['uid']))
+	$type=$_SESSION['type'];
+else 
+	$type=NULL;
 ?>

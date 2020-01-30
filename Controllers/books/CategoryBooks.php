@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+			session_start();
+		}
 if(isset($_POST['fcid'])) { 
 	if($_POST['fcid']!=''){
 		$cid=mysqli_escape_string($GLOBALS['conn'],$_POST['fcid']);
@@ -18,5 +20,4 @@ if(isset($_POST['fcid'])) {
 }
 else 
 	header('location:/login');
-
 ?>

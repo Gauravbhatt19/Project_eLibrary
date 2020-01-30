@@ -9,7 +9,7 @@ else if (isset($_GET['code'])) {
 	$token = $gClient->fetchAccessTokenWithAuthCode($_GET['code']);
 	$_SESSION['access_token'] = $token;
 } else {
-	$user->flashError('Internal Error ','/');
+	$user->flashError(['Internal Error '],'/');
 }
 try {
 	$oAuth = new Google_Service_Oauth2($gClient);
@@ -20,7 +20,7 @@ try {
 	$_SESSION['token']=$id;
 	$_SESSION['loginid']=$email;	
 } catch (Exception $e) {
-	$user->flashError('Internal Error ','/');	
+	$user->flashError(['Internal Error '],'/');	
 }
 if(isset($name) and isset($id) and isset($email)){
 	if($user->freshUser($email,$conn)){

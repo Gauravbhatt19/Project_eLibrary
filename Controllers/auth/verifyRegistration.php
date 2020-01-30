@@ -6,6 +6,7 @@ $db_values=$user->fetchUser($emailid);
 $db_pass=$db_values['password'];
 if($pass===$db_pass)
  $user->activate($emailid);
+header('location:/');
 else
- $user->flashError('Verification Fail ','/');
+ $user->flashError(['Verification Fail '],'/');
 ?>

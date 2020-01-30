@@ -1,32 +1,16 @@
-<div class="border border-secondary p-4 rounded bg-light">
-	<h5 class="text-center">Login Form</h5>                
-	<form method="POST" action="/login">
-		<?php if ($id=='admin'): ?>
-			<div class="form-group">
-				<label for="login">Login Id</label>
-				<input type="text" class="form-control" id="login" placeholder="Enter Login Id" name="loginid" required oninvalid="this.setCustomValidity('Enter Valid Login Id')"
-				oninput="this.setCustomValidity('')">
-				<?php else: ?>
-					<div class="form-group">
-						<label for="emailid">Email address</label>
-						<input type="email" class="form-control" name="emailid" id="emailid"  placeholder="Enter email" required oninvalid="this.setCustomValidity('Enter Valid Emailid')"
-						oninput="this.setCustomValidity('')">
-					<?php endif; ?>
-				</div>
-				<div class="form-group">
-					<label for="password">Password</label>
-					<input type="password" class="form-control" id="password" placeholder="Password" name="password" required oninvalid="this.setCustomValidity('Enter Valid password')"
-					oninput="this.setCustomValidity('')">
-					
-				</div>
-				<br>
-				<div class="row">
-					<span class="col-md-4">
-						<button type="submit" class="btn btn-success btn-block">Login</button>
-					</span>
-					<?php if ($id!='admin'): ?>
-						<span class="col-md-8 text-center">Or&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Login using&nbsp;&nbsp;<button type='button' class="text-danger btn btn-link" onclick="window.location = '<?php echo $loginURL ?>';"><i class="fas fa-envelope"></i>Gmail</button></span>
-					<?php endif; ?>
-				</div>
-			</form>          
-		</div>
+<div class="border border-secondary p-4 rounded bg-light col-sm-8 col-lg-12 mx-auto">
+	<form method="POST" action="/login" >
+		<h5 class="text-center">Welcome Back</h5>   
+		<input type="email" class="form-control mt-4" name="emailid" id="emailid"  placeholder="Enter Email Address *" required oninvalid="this.setCustomValidity('Enter Valid Email Address')" oninput="this.setCustomValidity('')">
+		     <small class="form-text text-muted text-danger"><?=$msg1?></small>
+		<input type="password" class="form-control mt-2"  minlength="1" id="password" placeholder="Enter Password *" name="password" required oninvalid="this.setCustomValidity('Enter Valid Password')"
+		oninput="this.setCustomValidity('')">      <small class="form-text text-muted text-danger"><?=$msg2?></small>
+		<button class="btn  btn-primary btn-block mt-3" type="submit">Log in</button>
+		<div class="row mt-4 m-2">
+		<hr class="d-inline col"><p class="text-muted text-center d-inline col-6 mt-1">or connect through</p><hr class="d-inline col"></div>         
+		<a href="<?=$loginURL?>">
+		<img src="../resources/images/google_logo.jpg" class="rounded mx-auto d-block"  alt="Login with Google" height="50">
+		</a>
+	</div>
+</form>          
+</div>

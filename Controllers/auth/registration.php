@@ -10,6 +10,9 @@ if(isset($_POST['rname']) and isset($_POST['remailid']) and isset($_POST['rpassw
 	if($user->freshUser($email))
 		$user->registerUser($name,$email,$pass,NULL);
 	else
-		$user->flashError('User Already Exists','/');
+		$user->flashError(['User Already Exists'],'/index?register=1');
+}
+else{
+	$user->flashError(['Enter Full Name','Enter Email Address','Enter Password'],'/index?register=1');
 }
 ?>
