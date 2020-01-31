@@ -6,9 +6,9 @@ $user=new Users;
 if (isset($_SESSION['token']) and isset($_SESSION['loginid'])) {
 	$name=$_SESSION['loginid'];
 	$row=$user->fetchUser($name);
-		$type=$row['type'];    			
-		$uid=$row['uid'];
-		require __dir__.'/'.'../../Controllers/common/setUserSession.php';
+	$type=$row['type'];    			
+	$uid=$row['uid'];
+	require __dir__.'/'.'../../Controllers/common/setUserSession.php';
 }
 elseif(!isset($_SESSION['uid'])){
 	if(isset($_POST['emailid'])) {
@@ -26,13 +26,18 @@ elseif(!isset($_SESSION['uid'])){
 }
 if (isset($_SESSION['type'])){
 	if($_SESSION['type']=='inadmin'){
+		$category = new Categories();
+		$categories=$category->fetchCategories();
+		if(isset($_GET['books']))
+		require __dir__.'/'.'../books/ListBooks.php';
+		else {
 		require __dir__.'/'.'../users/ListAllUsers.php';
 		require __dir__.'/'.'../bookCategories/ListCategories.php';
-		require __dir__.'/'.'../books/ListBooks.php';
+		}
 	}
 	elseif ($_SESSION['type']=='inreader') {
-	require __dir__.'/'.'../books/ListBooks.php';	
-	require __dir__.'/'.'../books/UserBooks.php';	
+		require __dir__.'/'.'../books/ListBooks.php';	
+		// require __dir__.'/'.'../books/UserBooks.php';	
 	}
 	else 
 		header('location:/');

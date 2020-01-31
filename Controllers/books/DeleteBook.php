@@ -16,9 +16,9 @@ if(isset($_GET['bid'])){
 		$filename=$title.".jpg";      
 		$file_pointer = __dir__.'/'.'../../resources/uploads/'.$filename;  
 		unlink($file_pointer); 
-		header('location:/login');
+		header('location:/login?books=1');
 	}
 	else
-		Users::flashError('Error in Deleting ','/login');
+		Users::flashError(['Error in Deleting '],'/login?books=1');
 }
 ?>

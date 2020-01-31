@@ -6,12 +6,12 @@ if(isset($_SESSION['uid'])){
 	if(isset($_GET['bid'])){
 		$bid=$_GET['bid'];
 		$user->readBook($uid,$bid);
-		header('location:/login');
+		header('location:/login?books=1');
 	}
 	elseif(isset($_GET['dbid'])){
 		$bid=$_GET['dbid'];
 		$user->unreadBook($uid,$bid);
-		header('location:/login');
+		header('location:/login?books=1');
 	}
 	else 
 		header("location:/");

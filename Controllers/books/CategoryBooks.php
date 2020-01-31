@@ -16,8 +16,8 @@ if(isset($_POST['fcid'])) {
 		$bookIds=[];
 		unset($_SESSION['fetchBooks']);
 	}
-	header('location:/login');
+	header('location:/login?books=1');
 }
 else 
-	header('location:/login');
+	header('location:/login?books=1');
 ?>
