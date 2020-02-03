@@ -10,7 +10,7 @@ class Mail {
 	public function sendVerificationMail($lnk,$emailid,$name){
 		$GLOBALS['mail']->addAddress($emailid, $name);
 		$GLOBALS['mail']->Subject  = 'Verification Link for eLibrary';
-		$GLOBALS['mail']->Body     = '<h1>Hi '.$name.' ,</h1><h2> Thank you for Registration at eLibrary.</h2><h3>Please verify your email account by <a href="'.$lnk.'"> clicking on this activation link</a></h3><br><h1>Welcome once again. <br> Thanks & Regards,<br> eLibrary Team</h1>';
+		$GLOBALS['mail']->Body     = 'Hi '.$name.' ,<br/><br/>Thank you for Registration at eLibrary.<br>Please verify your email account by <a href="'.$lnk.'"> clicking on this activation link</a><br/>Welcome once again. <br> <br/><br/>Thanks & Regards,<br> eLibrary Team';
 		if(!$GLOBALS['mail']->send()) {
 			return FALSE;
 		}

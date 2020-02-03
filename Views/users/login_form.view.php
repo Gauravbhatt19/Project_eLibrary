@@ -3,7 +3,7 @@
 		<h5 class="text-center">Welcome Back</h5>   
 		<input type="email" class="form-control mt-4" name="emailid" id="emailid"  placeholder="Enter Email Address *" required oninvalid="this.setCustomValidity('Enter Valid Email Address')" oninput="this.setCustomValidity('')">
 		<small class="form-text text-muted text-danger"><?=$msg1?></small>
-		<input type="password" class="form-control mt-2"  minlength="1" id="password" placeholder="Enter Password *" name="password" required oninvalid="this.setCustomValidity('Enter Valid Password')"
+		<input type="password" class="form-control mt-2"  minlength="8" id="password" placeholder="Enter Password *" name="password" required oninvalid="this.setCustomValidity('Enter Valid Password')"
 		oninput="this.setCustomValidity('')">      <small class="form-text text-muted text-danger"><?=$msg2?></small>
 		<button class="btn  btn-primary btn-block mt-3" type="submit">Log in</button>
 		<div class="row mt-4 m-2">

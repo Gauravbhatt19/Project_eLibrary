@@ -1,11 +1,9 @@
 <?php
-
 if (session_status() == PHP_SESSION_NONE) {
 	session_start();
 }
 if($_SESSION['type']!='inadmin')
 	header("location:/");
-	
 $book = new Books();
 $category = new Categories();
 $categories=$category->fetchCategories();
@@ -38,12 +36,12 @@ if(isset($_POST['book_name']) and isset($_POST['author_name']) and isset($_POST[
 		$uploadOk = 1;
 		$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 		if ($_FILES["book_cover"]["size"] > 1048576) {
-			Users::flashError(['Sorry, your file is too large. '],'/login?books=1');
-			die();
+			echo "string1";
+			 Users::flashError(['Sorry, your file is too large. '],'/login?books=1');
 		}
 		if($imageFileType != "jpg") {
-			Users::flashError(['Upload File is not jpg Image '],'/login?books=1');
-			die();
+			echo "string2";
+			 Users::flashError(['Upload File is not jpg Image '],'/login?books=1');
 		}
 		$deltitle=$_POST['cover_name'];
 		$delfilename=$deltitle.".jpg";      
@@ -53,11 +51,21 @@ if(isset($_POST['book_name']) and isset($_POST['author_name']) and isset($_POST[
 		$bookvalues=[$title];
 		$book->updateBook($booknames,$bookvalues,$bid);
 		if (!move_uploaded_file($_FILES["book_cover"]["tmp_name"], $target_file)) {	
-			Users::flashError(['Error in cover uploading '],'/login?books=1');
+			header('location:/login?books=1');
 		}
 	}
-	header('location:/login?books=1');
+		header('location:/login?books=1');
 }
-else
-	Users::flashError(['Error in Updating '],'/login?books=1');
+if(isset($_GET['bid'])){
+	$bid=$_GET['bid'];
+	$rows=$book->fetchBook($bid);
+	$book_name=$rows['book_name'];
+	$author_name=$rows['author_name'];
+	$edition=$rows['edition'];
+	$cover=$rows['cover_image_name'];
+	require __dir__.'/'.'../../Views/books/editbook_form.view.php';
+}
+elseif(!isset($_POST['book_name'])) {
+	header('location:/');
+}
 ?>

@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+	session_start();
+}
 if(isset($_SESSION['uid'])){
 	$user =new Users();
 	$uid=$_SESSION['uid'];
@@ -11,7 +13,12 @@ if(isset($_SESSION['uid'])){
 	elseif(isset($_GET['dbid'])){
 		$bid=$_GET['dbid'];
 		$user->unreadBook($uid,$bid);
-		header('location:/login?books=1');
+		if(isset($_GET['listbooks'])){
+			header('location:/login?listbooks=1');
+		}
+		else {
+			header('location:/login?books=1');
+		}
 	}
 	else 
 		header("location:/");

@@ -21,39 +21,42 @@
             <input type="text" class="form-control" id="book_edition" name="book_edition" placeholder="Enter Book Edition *" required oninvalid="this.setCustomValidity('Enter Valid Book Edition')"
             oninput="this.setCustomValidity('')">
           </div>
-          <div class="form-group">&nbsp;&nbsp;&nbsp;Book Categories *
-           <div class="input-group">
-             <?php 
-             $i=1;
-             while($categoryFetch=mysqli_fetch_assoc($categories)):  
-              $makeId='cid'.$i;
-              $cname=$categoryFetch['category_name'];
-              $cid=$categoryFetch['cid'];
-              ?>
-              <label <?="for='{$makeId}'"?> class='form-control'><?=$cname?> <input type='checkbox' <?="name='{$makeId}' id='{$makeId}'  value='{$cid}' "?> ></label>
-              <?php 
-              if($i%2==0):
+          <div class="form-group">&nbsp;&nbsp;&nbsp;Book Categories            <div class="input-group">
+           <?php 
+           $i=1;
+           while($categoryFetch=mysqli_fetch_assoc($categories)):  
+            $makeId='cid'.$i;
+            $cname=$categoryFetch['category_name'];
+            $cid=$categoryFetch['cid'];
+            ?>
+            <label <?="for='{$makeId}'"?> class='form-control'><?=$cname?> <input type='checkbox' <?="name='{$makeId}' id='{$makeId}'  value='{$cid}' "?> ></label>
+            <?php 
+            if($i%2==0):
               ?>
             </div>
             <div class='input-group'>
               <?php
             endif;
-              $i++;
-            endwhile;
-            ?>
-          </div>
+            $i++;
+          endwhile;
+          ?>
         </div>
-        <div class="custom-file">
-  <input type="file" class="custom-file-input" id="book_cover" accept="image/*" name="book_cover" required>
-  <label class="custom-file-label" for="book_cover">Book Cover *</label>
-  <small class="form-text text-muted ml-1">size must be less than 1mb</small>
-</div>
-       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-success">Add Book</button>
       </div>
+    <div class="custom-file">
+      <input type="file" class="custom-file-input" id="book_cover" accept="image/*" name="book_cover" required>
+      <label class="custom-file-label" for="book_cover">Book Cover *</label>
     </div>
-  </form>
+          <div class="row mb-3">
+      <label for="book_cover" class='mx-auto mt-2 align-self-center' >
+        <img id="cover_image"  style='height:255px; width:170px;' for=''> 
+      </label>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <button type="submit" class="btn btn-success">Add Book</button>
+  </div>
+</div>
+</form>
 </div>
 </div>

@@ -19,6 +19,6 @@ if(isset($_GET['bid'])){
 		header('location:/login?books=1');
 	}
 	else
-		Users::flashError(['Error in Deleting '],'/login?books=1');
+		header('location:/login?books=1');
 }
 ?>

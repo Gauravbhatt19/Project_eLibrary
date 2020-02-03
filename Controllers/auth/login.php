@@ -19,25 +19,27 @@ elseif(!isset($_SESSION['uid'])){
 			$user->verify($row,$pass);
 		}
 		else
-			$user->flashError([NULL,'Please enter Password'],'/');
+			$user->flashError([NULL,'Please Enter Password'],'/');
 	}
 	else
-		$user->flashError(['Please Enter Email Address','Please enter Password'],'/');
+		$user->flashError(['Please Enter Email Address','Please Enter Password'],'/');
 }
 if (isset($_SESSION['type'])){
 	if($_SESSION['type']=='inadmin'){
 		$category = new Categories();
 		$categories=$category->fetchCategories();
 		if(isset($_GET['books']))
-		require __dir__.'/'.'../books/ListBooks.php';
+			require __dir__.'/'.'../books/ListBooks.php';
 		else {
-		require __dir__.'/'.'../users/ListAllUsers.php';
-		require __dir__.'/'.'../bookCategories/ListCategories.php';
+			require __dir__.'/'.'../users/ListAllUsers.php';
+			require __dir__.'/'.'../bookCategories/ListCategories.php';
 		}
 	}
 	elseif ($_SESSION['type']=='inreader') {
-		require __dir__.'/'.'../books/ListBooks.php';	
-		// require __dir__.'/'.'../books/UserBooks.php';	
+		if(isset($_GET['listbooks']))
+			require __dir__.'/'.'../books/UserBooks.php';	
+		else
+			require __dir__.'/'.'../books/ListBooks.php';	
 	}
 	else 
 		header('location:/');

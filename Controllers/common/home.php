@@ -5,15 +5,15 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 $msg1=$msg2=$msg3=NULL;
 if(isset($_SESSION['error1'])){
-	$msg1="<div class='mt-2 alert alert-warning alert-dismissible fade show' role='alert'>{$_SESSION['error1']}<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
+	$msg1="<div class='mt-2 alert alert-warning alert-dismissible fade show' role='alert'>{$_SESSION['error1']}<button type='button' style='margin-top:-4px;' class='close mb-2' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
 	unset($_SESSION['error1']);
 }
 if (isset($_SESSION['error2'])){
-	$msg2="<div class='mt-2 alert alert-warning alert-dismissible fade show' role='alert'>{$_SESSION['error2']}<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
+	$msg2="<div class='mt-2 alert alert-warning alert-dismissible fade show' role='alert'>{$_SESSION['error2']}<button type='button' style='margin-top:-4px;' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
 	unset($_SESSION['error2']);
 }
 if (isset($_SESSION['error3'])){
-	$msg3="<div class='mt-2 alert alert-warning alert-dismissible fade show' role='alert'>{$_SESSION['error3']}<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
+	$msg3="<div class='mt-2 alert alert-warning alert-dismissible fade show' role='alert'>{$_SESSION['error3']}<button type='button' style='margin-top:-4px;' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
 	unset($_SESSION['error3']);
 }
 ?>
@@ -31,7 +31,8 @@ if (isset($_SESSION['error3'])){
 			<div class=" my-5">
 				<?php if(isset($_GET['register']))
 				require __dir__.'/'.'../../Views/users/registration_form.view.php';
-				elseif((Request::uri()=='')||(Request::uri()=='index.php')||(Request::uri()=='index')) require __dir__.'/'.'../../Views/users/login_form.view.php';?>
+				elseif((Request::uri()=='')||(Request::uri()=='index.php')||(Request::uri()=='index'))
+					require __dir__.'/'.'../../Views/users/login_form.view.php';?>
 			</div>
 		</div>
 	</div>

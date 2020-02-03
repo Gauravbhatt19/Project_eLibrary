@@ -41,7 +41,7 @@ class Users extends QueryBuilder{
 				$this->flashError([NULL,'Invalid Password'],'/');
 		}
 		else	
-			$this->flashError(['Invalid Email Address',' Password'],'/');
+			$this->flashError(['Invalid Email Address','Invalid Password'],'/');
 	}
 	public function freshUser($emailid){
 		$row=$this->fetchUser($emailid);

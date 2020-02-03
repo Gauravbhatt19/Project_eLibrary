@@ -18,6 +18,4 @@ if(isset($_GET['cid'])){
 	$category_name=$rows['category_name'];
 	require __dir__.'/'.'../../Views/bookCategories/editCategory_form.view.php';
 }
-else
-	Users::flashError('Error in Updating ','/login');
 ?>

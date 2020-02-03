@@ -28,15 +28,12 @@ if(isset($_POST['book_name']) and isset($_POST['author_name']) and isset($_POST[
 	$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 	$check = getimagesize($_FILES["book_cover"]["tmp_name"]);
 		if($check == false) {
-			Users::flashError(['Upload File is not Image '],'/login?books=1');
 			die();
 		}
 	if ($_FILES["book_cover"]["size"] > 1048576) {
-		Users::flashError(['Sorry, your file is too large. '],'/login?books=1');
 		die();
 	}
 	if($imageFileType != "jpg") {
-		Users::flashError(['Upload File is not jpg Image '],'/login?books=1');
 		die();
 	}
 	if (move_uploaded_file($_FILES["book_cover"]["tmp_name"], $target_file)) {
@@ -46,9 +43,9 @@ if(isset($_POST['book_name']) and isset($_POST['author_name']) and isset($_POST[
 			header('location:/login?books=1');
 		}
 		else
-			Users::flashError(['Error in adding Book'],'/login?books=1');		
+			header('location:/login?books=1');		
 	}
 	else
-		Users::flashError(['Error in file uploading'],'/login?books=1');	
+		header('location:/login?books=1');	
 }
 ?>

@@ -8,33 +8,39 @@
 	<div class="collapse navbar-collapse" id="navbartoggler">
 		<ul class="navbar-nav mr-lg-0 mx-auto text-center">
 			<?php if(isset($_GET['register']) ||(Request::uri()=='verifymsg') ): ?> 
-				<li class="nav-item">Already Registered?<a class="btn btn-outline-primary mr-5 ml-5" href="/">Log in</a>
-				</li>
-				<?php elseif((Request::uri()=='')||(Request::uri()=='index.php')||(Request::uri()=='index')):?>
-				<li class="nav-item">New to eLibrary?<a class="btn btn-outline-primary mr-5 ml-5" href="/index?register=1">Join Now</a></li>		
-				<?php elseif($type=='inreader'): ?>
-				<li class="nav-item">
-				<?php require __dir__.'/'.'../../Views/bookCategories/filterCategory_form.view.php'; ?>
-				</li>
-				<li class="nav-item">
-					<a class="btn btn-link" href="#">List of Read Books</a>
-				</li>	
-				<li class="nav-item">
-					<a class="btn btn-outline-danger mr-5 ml-5" onclick='logout()' href="javascript:void(0);">Logout</a>
-				</li>
-				<?php else: if(isset($_GET['books'])):?>
-				<li class="nav-item">
-					<a class="btn btn-link" href="login">Dashboard</a>
-				</li> 
-				<?php else : ?>
-				<li class="nav-item">
-					<a class="btn btn-link" href="login?books=1">Manage Books</a>
-				</li> 
-				<?php endif;?>
-				<li class="nav-item">
-					<a class="btn btn-outline-danger mr-5 ml-5" onclick='logout()' href="javascript:void(0);">Logout</a>
-				</li>
-				<?php endif;?>
-		</ul>
-	</div>
-</nav>
+			<li class="nav-item">Already Registered?<a class="btn btn-outline-primary mr-5 ml-5" href="/">Log in</a>
+			</li>
+			<?php elseif((Request::uri()=='')||(Request::uri()=='index.php')||(Request::uri()=='index')):?>
+			<li class="nav-item">New to eLibrary?<a class="btn btn-outline-primary mr-5 ml-5" href="/index?register=1">Join Now</a></li>		
+			<?php elseif($type=='inreader'): ?>
+				<?php if(isset($_GET['listbooks'])):?>
+					<li class="nav-item">
+						<a class="btn btn-link" href="login">Home</a>
+					</li>					
+					<?php else:?>
+						<li class="nav-item">
+							<?php require __dir__.'/'.'../../Views/bookCategories/filterCategory_form.view.php'; ?>
+						</li>
+						<li class="nav-item">
+							<a class="btn btn-link" href="login?listbooks=1">List of Read Books</a>
+						</li>					
+					<?php endif;?>
+					<li class="nav-item">
+						<a class="btn btn-outline-danger mr-5 ml-5" onclick='logout()' href="javascript:void(0);">Logout</a>
+					</li>
+					<?php else: if(isset($_GET['books'])):?>
+						<li class="nav-item">
+							<a class="btn btn-link" href="login">Dashboard</a>
+						</li> 
+						<?php else : ?>
+							<li class="nav-item">
+								<a class="btn btn-link" href="login?books=1">Manage Books</a>
+							</li> 
+						<?php endif;?>
+						<li class="nav-item">
+							<a class="btn btn-outline-danger mr-5 ml-5" onclick='logout()' href="javascript:void(0);">Logout</a>
+						</li>
+					<?php endif;?>
+				</ul>
+			</div>
+		</nav>

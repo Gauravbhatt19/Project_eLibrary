@@ -17,34 +17,53 @@ function logout(){
     window.location=url;
   }
 }
-function del($id,$lnk){
+function del(id,lnk){
   var test= window.confirm("Are you sure, You want Delete !");
   if(test == true){
-    var url=$lnk+$id;
+    var url=lnk+id;
+    window.location=url;
+  }
+}
+function uncheck(bid,lnk,callback='1'){
+  var test= window.confirm("Are you sure, You want uncheck !");
+  if(test == true){
+    var url=lnk+bid;
+    if(callback=='0')
+      url=url+'&listbooks=1';
     window.location=url;
   }
 }
 $('#editCategoryModal').on('show.bs.modal', function (event) {
-  var button = $(event.relatedTarget) // Button that triggered the modal
+  var button = $(event.relatedTarget) 
   var category_name = button.data('cname') 
-   var cid = button.data('cid') // Extract info from data-* attributes
-  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+  var cid = button.data('cid')
   var modal = $(this)
   modal.find('.modal-body #category_name').val(category_name)
   modal.find('.modal-body #cid').val(cid)
 })
 $('#editBookModal').on('show.bs.modal', function (event) {
-  var button = $(event.relatedTarget) // Button that triggered the modal
+  var button = $(event.relatedTarget) 
   var book_name = button.data('bookname') 
-   var bid = button.data('bid') // Extract info from data-* attribute
-   var author_name = button.data('authorname') 
-   var edition = button.data('edition') // Extract info from data-* attribute
-  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+  var bid = button.data('bid') 
+  var author_name = button.data('authorname') 
+  var edition = button.data('edition') 
   var modal = $(this)
   modal.find('.modal-body #book_name').val(book_name)
   modal.find('.modal-body #bid').val(bid)
   modal.find('.modal-body #author_name').val(author_name)
   modal.find('.modal-body #edition').val(edition)
 })
+
+function readURL(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      $('#cover_image').attr('src', e.target.result);
+    }
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+$("#book_cover").change(function() {
+  readURL(this);
+});
