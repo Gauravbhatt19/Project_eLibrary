@@ -15,6 +15,7 @@ elseif(!isset($_SESSION['uid'])){
 		if(isset($_POST['password'])){
 			$name=mysqli_escape_string($conn,$_POST['emailid']);
 			$pass=mysqli_escape_string($conn,$_POST['password']);
+			$_SESSION['name']=$name;
 			$row=$user->fetchUser($name);
 			$user->verify($row,$pass);
 		}

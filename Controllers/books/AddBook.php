@@ -15,8 +15,8 @@ if(isset($_POST['book_name']) and isset($_POST['author_name']) and isset($_POST[
 	$c=new Categories();
 	while(($i-1)<=mysqli_num_rows($c->fetchCategories()))	{
 		if(isset($_POST[$makeId]))
-	array_push($categories,mysqli_escape_string($conn,$_POST[$makeId]));
-	$makeId='cid'.$i++;
+			array_push($categories,mysqli_escape_string($conn,$_POST[$makeId]));
+		$makeId='cid'.$i++;
 	}
 	$t=substr($book_name,0,5);
 	$i=substr($edition,0,5);
@@ -27,9 +27,9 @@ if(isset($_POST['book_name']) and isset($_POST['author_name']) and isset($_POST[
 	$uploadOk = 1;
 	$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 	$check = getimagesize($_FILES["book_cover"]["tmp_name"]);
-		if($check == false) {
-			die();
-		}
+	if($check == false) {
+		die();
+	}
 	if ($_FILES["book_cover"]["size"] > 1048576) {
 		die();
 	}

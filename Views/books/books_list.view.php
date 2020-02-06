@@ -1,7 +1,7 @@
-<div class="container-fluid h-100" >
-  <div class="row p-3 h-100">
+<div class="container-fluid  min-vh-100" >
+  <div class="row p-3  min-vh-100">
     <div class="col-lg m-1">
-     <div class="border border-secondary p-4 rounded bg-light  h-100">
+     <div class="border border-secondary p-4 rounded bg-white min-vh-100">
       <h5 class="text-center">List of Book Read</h5>
       <div class="table-responsive" style="height:95%;overflow-y:scroll;">
         <table class="table table-striped">
@@ -10,6 +10,7 @@
               <th scope="col">#</th>
               <th scope="col" class="text-left">Book Name</th>
               <th scope="col" class="text-left">Author Name</th>
+              <th scope="col">Time</th>
               <th scope="col">Action</th>
             </tr>
           </thead>
@@ -18,12 +19,14 @@
             $book = new Books;
             while($bok=mysqli_fetch_assoc($readBookss)):  
               $bid=$bok['bid'];
+              $time=$bok['transaction_time'];
               $row=$book->fetchBook($bid);
               ?>
               <tr>
                 <th class="text-center"><?=++$i?></th>
                 <td><?=$row['book_name'] ?></td>
                 <td><?=$row['author_name'] ?></td>
+                <td class="text-center"><?=$time ?></td> 
                 <td class="text-center">
                   <?php $lnk='/readbook?dbid='; ?> 
                 <a onclick="uncheck('<?=$bid?>','<?=$lnk?>','0')" href='javascript:void(0);' class='card-link text-danger'> Uncheck</a>

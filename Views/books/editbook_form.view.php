@@ -1,8 +1,11 @@
+<?php
+$msg1=$msg2=$msg3=$msg4=NULL;
+?>
 <div class="container-fluid bg-light">
   <div class="row">
     <div class="col-md m-3">
       <div class="modal-dialog" role="form">
-        <form action='/editbook' method="POST" enctype="multipart/form-data">
+        <form action='/editbook' method="POST" enctype="multipart/form-data"  onsubmit="return (checkFieldName('book_name') && checkFieldName('author_name') && checkFieldName('edition') && checkFileInput('book_cover'))">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLongTitle">Edit Book Details</h5>
@@ -10,20 +13,20 @@
             <div class="modal-body">
               <div class="form-group">
                 <label for="book_name">Book Name</label>
-                <input type="text" class="form-control" id="book_name" name="book_name" value="<?=$book_name?>" required oninvalid="this.setCustomValidity('Enter Valid Book Name')"
-                oninput="this.setCustomValidity('')">
+                <input type="text" class="form-control" id="book_name" name="book_name" value="<?=$book_name?>" onkeyup="checkFieldName('book_name')">
+                <small class="form-text text-muted text-danger" id='errorbook_name'><?=$msg1?></small>
               </div>
               <div class="form-group">
                 <label for="author_name">Author Name</label>
-                <input type="text" class="form-control" id="author_name" name="author_name" value="<?=$author_name?>" required oninvalid="this.setCustomValidity('Enter Valid Author Name')"
-                oninput="this.setCustomValidity('')">
+                <input type="text" class="form-control" id="author_name" name="author_name" value="<?=$author_name?>" onkeyup="checkFieldName('author_name')">
+                <small class="form-text text-muted text-danger" id='errorauthor_name'><?=$msg2?></small>
               </div>
               <div class="form-group">
                 <label for="edition">Edition</label>
-                <input type="text" class="form-control" id="edition" name="edition" value="<?=$edition?>" required oninvalid="this.setCustomValidity('Enter Valid Edition')"
-                oninput="this.setCustomValidity('')">
+                <input type="text" class="form-control" id="edition" name="edition" value="<?=$edition?>" onkeyup="checkFieldName('edition')">
+                <small class="form-text text-muted text-danger" id='erroredition'><?=$msg3?></small>
               </div>
-              <div class="form-group">Book Categories:
+              <div class="form-group">Categories <small class="text-muted">(Optional)</small>
                <div class="input-group">
                  <?php 
                  $i=1;
@@ -39,7 +42,7 @@
                      $check='checked';
                  }
                  ?>
-                 <label <?="for='{$makeId}'"?> class='form-control'><?=$cname?> <input type='checkbox'  <?="name='{$makeId}' id='{$makeId}'  value='{$cid}' {$check}"?> ></label>
+                 <label <?="for='{$makeId}'"?> class='form-control'><?=$cname?> <input type='checkbox'  <?="name='{$makeId}' id='{$makeId}'  value='{$cid}' {$check}"?> style="width:15px; height:15px;"></label>
                  <?php 
                  if($i%2==0):
                   ?>
@@ -58,9 +61,9 @@
           </label>
         </div>
         <div class="custom-file">
-          <input type="file" class="custom-file-input" id="book_cover" accept="image/*" name="book_cover" required>
-          <label class="custom-file-label" for="book_cover">New Book Cover </label>
-          <small class="form-text text-muted ml-1">* Size must be less than 1 mb</small>
+          <input type="file" class="custom-file-input" id="book_cover" accept="image/*" name="book_cover" onchange="checkFileInput('book_cover')">
+          <label class="custom-file-label" for="book_cover">New Book Cover #</label>
+          <small class="form-text text-muted ml-1"># Size Must Be Less Than 1MB</small> <small class="form-text text-muted text-danger" id='errorbook_cover'><?=$msg4?></small>
         </div>
         <input type="hidden" name="bid"   value="<?=$bid?>">
         <input type="hidden" name="cover_name"   value="<?=$cover?>">

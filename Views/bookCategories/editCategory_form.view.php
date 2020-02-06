@@ -1,6 +1,9 @@
+<?php
+$msg1=NULL;
+?>
 <div class="modal fade" id="editCategoryModal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog" role="form">
-   <form action='/editcat' method="POST">
+   <form action='/editcat' method="POST" onsubmit="return checkFieldName('category_name1')">
            <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLongTitle">Edit Category Details</h5>
@@ -11,8 +14,8 @@
         <div class="modal-body">
           <div class="form-group">
             <label for="category_name">Category Name</label>
-            <input type="text" class="form-control" id="category_name" name="category_name" placeholder="Enter Category Name" required oninvalid="this.setCustomValidity('Enter Valid Category Name')"
-            oninput="this.setCustomValidity('')">
+            <input type="text" class="form-control" id="category_name1" name="category_name" placeholder="Enter Category Name"  onkeyup="checkFieldName('category_name1')">
+            <small class="form-text text-muted text-danger" id='errorcategory_name1'><?=$msg1?></small>   
           </div>
                <input type="hidden" name="cid" id='cid'>
         </div>

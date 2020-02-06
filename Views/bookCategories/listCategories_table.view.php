@@ -1,5 +1,5 @@
-<div class="col-lg m-1 h-100">
- <div class="border border-secondary py-4 rounded bg-light h-100">
+<div class="col-lg m-1 min-vh-100">
+ <div class="border border-secondary py-4 rounded bg-white min-vh-100">
   <h5 class="text-center">Categories</h5>
   <div class="table-responsive" style="height: 98%; overflow-y:scroll;">
     <table class="table table-striped">

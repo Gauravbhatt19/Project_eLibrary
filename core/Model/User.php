@@ -28,14 +28,16 @@ class Users extends QueryBuilder{
 	public function verify($row,$pass){
 		if(isset($row)){
 			if(password_verify($pass, $row['password'])){
-				if($row['verified_id']==0){
+				if($row['verified_id']=="0"){
 					session_destroy();
 					header('location:/verifymsg');
 				}
-				$type=$row['type'];    			
-				$uid=$row['uid'];
-				require __dir__.'/'.'../../Controllers/common/setUserSession.php';
-				header('location:/login');
+				else {
+					$type=$row['type'];    			
+					$uid=$row['uid'];
+					require __dir__.'/'.'../../Controllers/common/setUserSession.php';
+					header('location:/login');
+				}
 			}
 			else
 				$this->flashError([NULL,'Invalid Password'],'/');
@@ -56,13 +58,13 @@ class Users extends QueryBuilder{
 	public function registerUser($name,$emailid,$pass,$id){
 		$pass=password_hash($pass, PASSWORD_DEFAULT);
 		$this->names=['user_name','email_id','password','provider_id','verified_id'];
-		$this->values=["'{$name}'","'{$emailid}'","'{$pass}'","'{$id}'","'1'"];
+		$this->values=["'{$name}'","'{$emailid}'","'{$pass}'","'{$id}'","'0'"];
 		if(parent::insert($this->table,$this->names,$this->values)){
 			if($id!=NULL){
 				header('location:/login');
 			}
 			else{
-				$lnk='http://localhost/verify?id='.$emailid.'&secret='.$pass;
+				$lnk='http://13.232.148.8/verify?id='.$emailid.'&secret='.$pass;
 				if(Mail::sendVerificationMail($lnk,$emailid,$name)){
 					header("location:/verifymsg");
 				}
@@ -76,6 +78,13 @@ class Users extends QueryBuilder{
 	public function activate($emailid){
 		if(!parent::update($this->table,['verified_id'=>'1'],'email_id',$emailid))	
 			$this->flashError(['Problem in Verification'],'/');	
+	}
+	public function passwordUpdate($emailid,$password){
+		$password=password_hash($password, PASSWORD_DEFAULT);
+		if(!parent::update($this->table,['password'=>$password],'email_id',$emailid))	
+			$this->flashError(['Problem in Updation'],'/passwordreset');	
+		else
+			header('location:/');
 	}
 	public function readBook($uid,$bid){
 		$this->names=['uid','bid'];
@@ -99,7 +108,7 @@ class Users extends QueryBuilder{
 		$usrIds=[];
 		$book=new Books();
 		while($usr=mysqli_fetch_assoc($userList)){
-			if($usr['email_id']!='admin'){
+			if($usr['type']!=0){
 				$readBooks=mysqli_num_rows($this->fetchBooks($usr['uid']));
 				$allBooks=mysqli_num_rows($book->fetchBooks());
 				if(($readBooks+1)>=$allBooks){
@@ -122,5 +131,12 @@ class Users extends QueryBuilder{
 		}
 		return $usrIds;
 	}
+	public function deleteAllBooks($uid){
+		return parent::delete('has_book','uid',$uid);
+	}
+	public function deleteUserById($uid){
+		return parent::delete('users','uid',$uid);
+	}
+
 }
 ?>

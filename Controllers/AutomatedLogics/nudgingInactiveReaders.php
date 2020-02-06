@@ -3,18 +3,18 @@ $user = new Users();
 $book = new Books();
 $fetchAllUsers=$user->fetchInactiveUsers();
 $subject="eLibrary | Newly Added Books";
-$lastWeekBookList="<h3>The following are the Last Week Added Books: <ol>";
+$lastWeekBookList="The following are the Last Week Added Books: <ol>";
 $fetchLastWeekBook=$book->fetchLastWeekBook();
 while($bok=mysqli_fetch_assoc($fetchLastWeekBook)){
 	$lastWeekBookList=$lastWeekBookList."<li>".$bok['book_name']." by ".$bok['author_name']."</li>";
 }
-$lastWeekBookList=$lastWeekBookList."</ol></h3>";
+$lastWeekBookList=$lastWeekBookList."</ol><br />";
 foreach ($fetchAllUsers as $uid){
 	$usr=$user->fetchUser($uid);
-	if($usr['email_id']!='admin'){
+	if($usr['type']!=0){
 		$email_id=$usr['email_id'];
 		$name=$usr['user_name'];
-		$body="<h3>Hello {$name},</h3>";
+		$body="Hello {$name},<br />";
 		$body=$body.$lastWeekBookList;
 		if(Mail::sendMail($email_id,$name,$body,$subject)){
 			echo "SUCCESS..!";
