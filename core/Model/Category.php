@@ -21,7 +21,7 @@ class Categories extends QueryBuilder{
 	}
 	public function registerCategory(){
 		if(parent::insert($this->table,$this->names,$this->values))
-			header('location:/login');
+			header('location:/login?view=categories');
 		else 
 			Users::flashError('category Already Exists','/login');
 	}

@@ -9,7 +9,7 @@ if(isset($_POST['category_name']) and isset($_POST['cid'])){
 $categoryName=mysqli_escape_string($GLOBALS['conn'],$_POST['category_name']);
 $cid=mysqli_escape_string($GLOBALS['conn'],$_POST['cid']);
 $category->updateCategory($categoryName,$cid);
-header('location:/login');
+header('location:/login?view=categories');
 }
 
 if(isset($_GET['cid'])){

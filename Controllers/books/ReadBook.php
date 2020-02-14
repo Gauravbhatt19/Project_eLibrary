@@ -16,9 +16,8 @@ if(isset($_SESSION['uid'])){
 		if(isset($_GET['listbooks'])){
 			header('location:/login?listbooks=1');
 		}
-		else {
-			header('location:/login?books=1');
-		}
+		else
+			header('location:/login');
 	}
 	else 
 		header("location:/");

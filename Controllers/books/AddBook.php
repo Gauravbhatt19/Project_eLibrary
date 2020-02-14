@@ -27,25 +27,22 @@ if(isset($_POST['book_name']) and isset($_POST['author_name']) and isset($_POST[
 	$uploadOk = 1;
 	$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 	$check = getimagesize($_FILES["book_cover"]["tmp_name"]);
-	if($check == false) {
-		die();
-	}
-	if ($_FILES["book_cover"]["size"] > 1048576) {
-		die();
-	}
-	if($imageFileType != "jpg") {
-		die();
-	}
-	if (move_uploaded_file($_FILES["book_cover"]["tmp_name"], $target_file)) {
-		if($bid=$book->registerBook($book_name,$author_name,$edition,$title)){
-			$book->enterCategories($bid,$categories);
-			require __dir__.'/'."../AutomatedLogics/bookCompleted.php";
-			header('location:/login?books=1');
+	if(($check == true)&&($_FILES["book_cover"]["size"] < 1048576)&&($imageFileType == "jpg")) {
+		if (move_uploaded_file($_FILES["book_cover"]["tmp_name"], $target_file)) {
+			if($bid=$book->registerBook($book_name,$author_name,$edition,$title)){
+				$book->enterCategories($bid,$categories);
+				require __dir__.'/'."../AutomatedLogics/bookCompleted.php";
+				header('location:/login?view=books');
+			}
+			else
+				header('location:/login?view=books');		
 		}
 		else
-			header('location:/login?books=1');		
+			header('location:/login?view=books');
 	}
 	else
-		header('location:/login?books=1');	
+			header('location:/login?books=1');
 }
+else
+header('location:/');
 ?>

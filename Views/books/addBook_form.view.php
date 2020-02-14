@@ -50,8 +50,8 @@ $msg1=$msg2=$msg3=$msg4=NULL;
       </div>
       <div class="custom-file">
         <input type="file" class="custom-file-input" id="book_cover" accept="image/*" name="book_cover" onchange="checkFileInput('book_cover')">
-        <label class="custom-file-label" for="book_cover">Book Cover * #</label>
-        <small class="form-text text-muted mt-0 ml-2"># Size Must Be Less Than 1MB.</small>
+        <label class="custom-file-label" for="book_cover">Book Cover * </label>
+        <small class="form-text text-muted mt-0 ml-2">Note* - Size Must Be Less Than 1MB.</small>
         <small class="form-text text-muted text-danger" id='errorbook_cover'><?=$msg4?></small>
       </div>
       <div class="row">
@@ -62,7 +62,7 @@ $msg1=$msg2=$msg3=$msg4=NULL;
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      <button type="submit" class="btn btn-success">Add Book</button>
+      <button type="submit" class="btn btn-primary">Add Book</button>
     </div>
   </div>
 </form>

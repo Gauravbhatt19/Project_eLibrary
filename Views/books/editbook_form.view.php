@@ -69,7 +69,7 @@ $msg1=$msg2=$msg3=$msg4=NULL;
         <input type="hidden" name="cover_name"   value="<?=$cover?>">
       </div>
       <div class="modal-footer">
-        <a class="btn btn-secondary" href='/login?books=1'>Close</a>
+        <a class="btn btn-secondary" href='/login?view=books'>Close</a>
         <button type="submit" class="btn btn-primary">Save Changes</button>
       </div>
     </div>

@@ -5,10 +5,12 @@ if (session_status() == PHP_SESSION_NONE) {
 if($_SESSION['type']!='inadmin')
 	header("location:/");
 $category = new Categories();
-if(isset($_GET['cid'])){
-	$cid=$_GET['cid'];
+if(isset($_POST['cid'])){
+	$cid=$_POST['cid'];
 	$category->deleteAllBooks($cid);
 	if($category->deleteCategory($cid))
-		header('location:/login');
+		header('location:/login?view=categories');
 }
+else
+	header('location:/');
 ?>

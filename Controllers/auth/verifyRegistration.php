@@ -9,5 +9,5 @@ if($pass===$db_pass){
 	header('location:/');
 }
 else
-	$user->flashError(['Verification Fail'],'/');
+	header('location:/splashmsg?msgtype=verificationfailed');
 ?>

@@ -19,7 +19,15 @@ class QueryBuilder{
 		$qry="SELECT * FROM {$table} WHERE {$whereClause}";
 		$result=mysqli_query($GLOBALS['conn'],$qry);		
 		return $result;
-	}	
+	}
+	public function fetchList2($table,$limit,$offset){
+		$limit+=1;
+		$limit=abs($limit);
+		$offset=abs($offset);
+		$qry="SELECT * FROM {$table} LIMIT {$offset},{$limit}";
+		$result=mysqli_query($GLOBALS['conn'],$qry);		
+		return $result;
+	}		
 	public function insert($table,$names,$values){	
 		$names=implode(',',$names);
 		$values=implode(',',$values);

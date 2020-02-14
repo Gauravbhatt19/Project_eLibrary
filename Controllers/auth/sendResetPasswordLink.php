@@ -11,7 +11,7 @@ if(isset($_POST['resemailid'])){
 		$pass=$row['password'];
 		$lnk='http://13.232.148.8/passwordreset?id='.$emailid.'&secret='.$pass;
 		if(Mail::sendResetPasswordMail($lnk,$emailid,$name)){
-			header("location:/splashmsg");
+			header("location:/splashmsg?msgtype=forgotpassword");
 		}
 		else{
 			$user->flashError(['Internal Error, Try Again'],'/reset_password');

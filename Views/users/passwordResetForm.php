@@ -15,12 +15,12 @@ if(isset($_SESSION['name'])){
 	unset($_SESSION['name']);
 }
 ?>
-<div class="min-vh-100 d-flex bg-light">
+<div class="d-flex bg-light py-5"  style="min-height:calc(100% - 180px);">
 	<div class="my-auto w-100">
-		<form method="POST" action="/send_reset_password_link" onsubmit="return checkFieldEmail('emailid')" class="border border-secondary p-4 rounded bg-white col-sm-6 col-lg-4 mx-auto">
+		<form method="POST" action="/send_reset_password_link" onsubmit="return checkFieldEmail('emailid')" class="border border-secondary p-4 rounded bg-white col-md-5 col-sm-6 col-9 col-xl-3 col-lg-4 mx-auto">
 			<h5 class="text-center">Reset Your Password</h5>   
 			<input type="email" class="form-control mt-4" name="resemailid" id="emailid"  placeholder="Enter Email Address *" value="<?=$emailid?>" onkeyup="checkFieldEmail('emailid')">
-			<small class="form-text text-muted text-danger" style="height:48px;" 
+			<small class="form-text text-muted text-danger"
 			id='erroremailid'><?=$msg1 ?></small>
 			<button class="btn  btn-primary btn-block mt-3" type="submit">Send Password Reset Email</button>
 		</form>          

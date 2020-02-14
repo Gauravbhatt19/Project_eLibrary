@@ -37,11 +37,11 @@ if(isset($_POST['book_name']) and isset($_POST['author_name']) and isset($_POST[
 		$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 		if ($_FILES["book_cover"]["size"] > 1048576) {
 			echo "string1";
-			 Users::flashError(['Sorry, your file is too large. '],'/login?books=1');
+			Users::flashError(['Sorry, your file is too large. '],'/login?books=1');
 		}
 		if($imageFileType != "jpg") {
 			echo "string2";
-			 Users::flashError(['Upload File is not jpg Image '],'/login?books=1');
+			Users::flashError(['Upload File is not jpg Image '],'/login?books=1');
 		}
 		$deltitle=$_POST['cover_name'];
 		$delfilename=$deltitle.".jpg";      
@@ -51,10 +51,10 @@ if(isset($_POST['book_name']) and isset($_POST['author_name']) and isset($_POST[
 		$bookvalues=[$title];
 		$book->updateBook($booknames,$bookvalues,$bid);
 		if (!move_uploaded_file($_FILES["book_cover"]["tmp_name"], $target_file)) {	
-			header('location:/login?books=1');
+			header('location:/login?view=books');		
 		}
 	}
-		header('location:/login?books=1');
+	header('location:/login?view=books');		
 }
 if(isset($_GET['bid'])){
 	$bid=$_GET['bid'];
@@ -63,6 +63,7 @@ if(isset($_GET['bid'])){
 	$author_name=$rows['author_name'];
 	$edition=$rows['edition'];
 	$cover=$rows['cover_image_name'];
+	require __dir__.'/'.'../../Views/common/sidebar.php'; 
 	require __dir__.'/'.'../../Views/books/editbook_form.view.php';
 }
 elseif(!isset($_POST['book_name'])) {

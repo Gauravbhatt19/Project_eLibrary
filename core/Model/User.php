@@ -14,6 +14,9 @@ class Users extends QueryBuilder{
 	public function fetchUsers(){
 		return parent::fetchList($this->table);
 	}
+	public function fetchUsersLimit($limit,$offset){
+		return parent::fetchList2($this->table,$limit,$offset);
+	}
 	public function flashError($msg,$dir){
 		if (session_status() == PHP_SESSION_NONE) {
 			session_start();
@@ -30,11 +33,12 @@ class Users extends QueryBuilder{
 			if(password_verify($pass, $row['password'])){
 				if($row['verified_id']=="0"){
 					session_destroy();
-					header('location:/verifymsg');
+					header('location:/splashmsg?msgtype=unverified');
 				}
 				else {
 					$type=$row['type'];    			
 					$uid=$row['uid'];
+					$name=$row['user_name'];
 					require __dir__.'/'.'../../Controllers/common/setUserSession.php';
 					header('location:/login');
 				}
@@ -66,7 +70,7 @@ class Users extends QueryBuilder{
 			else{
 				$lnk='http://13.232.148.8/verify?id='.$emailid.'&secret='.$pass;
 				if(Mail::sendVerificationMail($lnk,$emailid,$name)){
-					header("location:/verifymsg");
+					header("location:/splashmsg?msgtype=unverified");
 				}
 				else{
 					$this->deleteUser($emailid);

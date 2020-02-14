@@ -3,7 +3,12 @@ function passwordMatch(id1,id2){
   var fieldId2=document.getElementById(id2);
   var errorId='error'+id2;  
   errorId=document.getElementById(errorId);
-  if(fieldId1.value!=fieldId2.value){
+  if(fieldId2.value==''){
+    errorId.innerHTML="<div class='text-danger'>Please Enter Password</div>";
+    fieldId2.classList.remove("is-valid");
+    fieldId2.classList.add("is-invalid");
+    return false;
+  } else if(fieldId1.value!=fieldId2.value){
     errorId.innerHTML="<div class='text-danger'>Confirm Password doesn't match with Password Field</div>";
     fieldId2.classList.remove("is-valid");
     fieldId2.classList.add("is-invalid");
@@ -38,13 +43,12 @@ function checkFieldName(id){
   var fieldId=document.getElementById(id);
   var errorId='error'+id;
   errorId=document.getElementById(errorId);
-  if (fieldId.value.length<2){
-    errorId.innerHTML="<div class='text-danger'>Invalid Entry</div>";
+  if(fieldId.value==''){
+    errorId.innerHTML="<div class='text-danger'>Entry is required</div>";
     fieldId.classList.remove("is-valid");
     fieldId.classList.add("is-invalid");
     return false;
-  }
-  else{
+  }   else{
     errorId.innerHTML="";
     fieldId.classList.remove("is-invalid");
     fieldId.classList.add("is-valid");
@@ -55,7 +59,12 @@ function checkFieldEmail(id){
   var fieldId=document.getElementById(id);
   var errorId='error'+id;
   errorId=document.getElementById(errorId);
-  if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(fieldId.value)){
+  if(fieldId.value==''){
+    errorId.innerHTML="<div class='text-danger'>Email is required</div>";
+    fieldId.classList.remove("is-valid");
+    fieldId.classList.add("is-invalid");
+    return false;
+  } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(fieldId.value)){
     errorId.innerHTML="<div class='text-danger'>Invalid Email Address</div>";
     fieldId.classList.remove("is-valid");
     fieldId.classList.add("is-invalid");
@@ -74,7 +83,6 @@ function checkFieldPassword(id){
   errorId=document.getElementById(errorId);
   if (fieldId.value.length<8){
     errorId.innerHTML="<div class='text-danger'>Password must be greater than equal to 8</div>";
-    fieldId.focus();
     fieldId.classList.add("is-invalid");
     fieldId.classList.remove("is-valid");
     return false;
@@ -86,35 +94,37 @@ function checkFieldPassword(id){
     return true;
   }
 }
-function logout(){
-  var test= window.confirm("Are you sure, You want Logout !");
-  if(test == true){
-    var url='/logout';
-    window.location=url;
-  }
-}
-function del(id,lnk){
-  var test= window.confirm("Are you sure, You want Delete !");
-  if(test == true){
-    var url=lnk+id;
-    window.location=url;
-  }
-}
-function uncheck(bid,lnk,callback='1'){
-  var test= window.confirm("Are you sure, You want uncheck !");
-  if(test == true){
-    var url=lnk+bid;
-    if(callback=='0')
-      url=url+'&listbooks=1';
-    window.location=url;
-  }
-}
+$('#deleteCategoryModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) 
+  var category_name = button.data('cname') 
+  var cid = button.data('cid')
+  var modal = $(this)
+  modal.find('.modal-body #category_name').html(category_name)
+  modal.find('.modal-body #cid').val(cid)
+})
+$('#deleteUserModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) 
+  var user_name = button.data('uname') 
+  var uid = button.data('uid')
+  var modal = $(this)
+  modal.find('.modal-body #user_name').html(user_name)
+  modal.find('.modal-body #uid').val(uid)
+})
+$('#deleteBookModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) 
+  var book_name = button.data('bname') 
+  var bid = button.data('bid')
+  var modal = $(this)
+  modal.find('.modal-body #book_name').html(book_name)
+  modal.find('.modal-body #bid').val(bid)
+})
+
 $('#editCategoryModal').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget) 
   var category_name = button.data('cname') 
   var cid = button.data('cid')
   var modal = $(this)
-  modal.find('.modal-body #category_name').val(category_name)
+  modal.find('.modal-body #category_name1').val(category_name)
   modal.find('.modal-body #cid').val(cid)
 })
 $('#editBookModal').on('show.bs.modal', function (event) {

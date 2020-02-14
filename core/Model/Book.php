@@ -17,6 +17,9 @@ class Books extends QueryBuilder{
 		else
 			return TRUE;
 	}
+	public function fetchBooksLimit($limit,$offset){
+		return parent::fetchList2($this->table,($limit-1),$offset);
+	}
 	public function deleteBook($bid){
 		$this->deleteAllCategories($bid);
 		$this->deleteAllReaders($bid);
@@ -47,16 +50,16 @@ class Books extends QueryBuilder{
 		$i=0;
 		$update=[];
 		while(isset($booknames[$i])){
-		$update+=[$booknames[$i]=>$bookvalues[$i]];
-		$i++;
-		 }
+			$update+=[$booknames[$i]=>$bookvalues[$i]];
+			$i++;
+		}
 		return (parent::update($this->table,$update,'bid',$bid));
 	}
 	public function fetchLastWeekBook(){
-			$date = date("Y-m-d");
-			$days_ago = date('Y-m-d', strtotime('-7 days', strtotime($date)));
-			$check=" last_modify >= '".$days_ago."'";
-			return (parent::fetchList1('books',$check));
+		$date = date("Y-m-d");
+		$days_ago = date('Y-m-d', strtotime('-7 days', strtotime($date)));
+		$check=" last_modify >= '".$days_ago."'";
+		return (parent::fetchList1('books',$check));
 	}
 }
 ?>

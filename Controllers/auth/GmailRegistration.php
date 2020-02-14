@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set("Asia/Kolkata");
 if (session_status() == PHP_SESSION_NONE) {
 	session_start();
 }
@@ -18,7 +19,8 @@ $_SESSION['token']=$id;
 $_SESSION['loginid']=$email;	
 if(isset($name) and isset($id) and isset($email)){
 	if($user->freshUser($email,$conn)){
-		$user->registerUser($name,$email,NULL,$id);
+		$user->registerUser($name,$email,'random',$id);
+		$user->activate($email);
 	}
 	else{
 		header('location:/login');
